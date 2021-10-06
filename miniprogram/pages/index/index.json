@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "Home": "../home/home",
+    "Found": "../found/index/index",
+    "User": "../user/index/index"
+  }
+}
