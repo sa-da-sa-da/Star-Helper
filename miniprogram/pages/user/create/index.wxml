@@ -1,0 +1,55 @@
+<!--pages/user/create/index.wxml-->
+<view class="main">
+  <cu-custom bgColor="bg-blue " isBack="{{true}}">
+    <view slot="content">创建班级</view>
+  </cu-custom>
+</view>
+
+<view class="margin-lr-sm">
+  <form catchsubmit="SubMit_Btn">
+      <view class="cu-form-group margin-top">
+        <view class="title text-bold">班级名称*</view>
+        <input placeholder="请输入您的班级名称" value="{{Class_Name}}" bindinput="Class_Name_Input"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">所在学校*</view>
+        <input placeholder="请输入所在学校" value="{{Class_School}}" bindinput="Class_School_Input"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">所在专业*</view>
+        <input placeholder="请输入所在专业" value="{{Class_Profession}}" bindinput="Class_Profession_Input"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">所在年级</view>
+        <input placeholder="请输入所在年级" value="{{Class_Grade}}" bindinput="Class_Grade_Input"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">班级密钥*（一旦设置不能更改）</view>
+        <view class="title text-bold">{{Class_ID}}</view>
+      </view>
+      <view class="cu-bar bg-white margin-top ">
+      <view class="action text-bold">
+        背景上传
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+          <image src='{{imgList[index]}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+      </view>
+    </view>
+    <text>\n</text>
+    <button class="cu-btn block bg-blue margin-tb-sm lg" formType="submit"> 
+      <text class="cuIcon-submit iconfont-spin"></text>
+     创建
+    </button>
+  </form>
+  <text>\n</text><text>\n</text><text>\n</text>
+</view>

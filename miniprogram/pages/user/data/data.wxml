@@ -1,0 +1,28 @@
+<!--pages/user/data/data.wxml-->
+
+  <cu-custom bgColor="bg-blue " isBack="{{true}}">
+    <view slot="content">Star </view>
+  </cu-custom>
+
+  <view class="vip-card-box">
+    <view class="b-btn" bindtap="onClick">
+      立刻分享
+    </view>
+    <text>Star 教育技术</text>
+    <view class="tit"></view>
+    <view class="e-b">注册时间：{{add_time}}</view>
+    <view class="e-b">等级 Lv.{{ dj || 0}}</view>
+    <view class="e-b">积分 {{ jf || 0}}</view>
+  </view>
+
+
+
+
+  <view class="cu-list menu">
+
+    <view class="search bg-blue light" bindtap="jump_to_chatbot" data-url="answer/chatbot/index">
+      <van-icon name="desktop-o" />
+    </view>
+    <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options_sada }}" bind:select="onSelect"
+      bind:close="onClose" />
+  </view>

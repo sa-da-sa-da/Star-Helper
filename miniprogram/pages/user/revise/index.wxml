@@ -1,0 +1,92 @@
+<!--pages/user/revise/index.wxml-->
+<view class="main">
+  <cu-custom bgColor="bg-blue " isBack="{{true}}">
+    <view slot="content">修改个人资料</view>
+  </cu-custom>
+</view>
+<view class="margin-lr-sm">
+  <form catchsubmit="SubMit_Btn">
+      <view class="cu-form-group margin-top">
+        <view class="title text-bold">姓 名</view>
+        <input placeholder="请输入您的姓名" value="{{User_Name}}" bindinput="User_Name_Input"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">学 号</view>
+        <input placeholder="请输入您的学号，以展示给管理员" value="{{User_StuID}}" bindinput="User_StuID_Input"></input>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">生 日</view>
+        <picker mode="date" value="{{User_Birth_Date}}" start="1900-09-01" end="2049-09-01" bindchange="DateChange">
+          <view class="picker">
+            {{User_Birth_Date}}
+          </view>
+        </picker>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">籍 贯</view>
+        <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}" >
+          <view class="picker">
+            {{region[0]}}，{{region[1]}}，{{region[2]}}
+          </view>
+        </picker>
+      </view>
+      <view class="cu-form-group">
+        <view class="title text-bold">学 校</view>
+        <input placeholder="请输入您的学校，以展示给管理员" value="{{User_School}}" bindinput="User_School_Input"></input>
+      </view>
+    
+    <view class="cu-form-group  margin-top ">
+      <view class="title text-bold">手 机</view>
+      <input placeholder="请输入您的手机" value="{{User_Phone}}" bindinput="User_Phone_Input"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-bold">微 信 </view>
+      <input placeholder="请输入您的微信" value="{{User_Wx}}" bindinput="User_Wx_Input"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-bold">邮箱 </view>
+      <input placeholder="请输入您的邮箱" value="{{User_Mail}}" bindinput="User_Mail_Input"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-bold"> Q Q </view>
+      <input placeholder="请输入您的QQ" value="{{User_Qq}}" bindinput="User_Qq_Input"></input>
+    </view>
+
+    <view class="cu-form-group margin-top">
+      <view class="title text-bold">个性签名1</view>
+      <input placeholder="请输入第一行个性签名" value="{{User_Signature1}}" bindinput="User_S1_Input"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-bold">个性签名2</view>
+      <input placeholder="请输入第二行个性签名" value="{{User_Signature2}}" bindinput="User_S2_Input"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title text-bold">个性签名3</view>
+      <input placeholder="请输入第三行个性签名" value="{{User_Signature3}}" bindinput="User_S3_Input"></input>
+    </view>
+    <view class="cu-bar bg-white margin-top ">
+      <view class="action text-bold">
+        背景上传
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+          <image src='{{imgList[index]}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+      </view>
+    </view>
+    <text>\n</text>
+    <button class="cu-btn block bg-blue margin-tb-sm lg" formType="submit"> 
+      <text class="cuIcon-submit iconfont-spin"></text>
+      修       改
+    </button>
+  </form>
+  <text>\n</text><text>\n</text><text>\n</text>
+</view>

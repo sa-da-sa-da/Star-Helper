@@ -1,0 +1,51 @@
+<!--pages/user/Org_Manage/index.wxml-->
+<view class="main">
+  <cu-custom bgColor="bg-blue " isBack="{{true}}">
+    <view slot="content">修改个人资料</view>
+  </cu-custom>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 我加入的
+    </view>
+  </view>
+  <view class="cu-list menu-avatar">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{Class_List_Create}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+      <view class="content">
+        <view class="text-grey">{{item.Class_Name}}</view>
+        <view class="text-gray text-sm">
+          <text class="cuIcon-infofill text-blue"></text>{{item.Class_Profession}} - {{item.Class_Grade}}</view>
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.Class_ID}}</view>
+        <view class="cu-tag round bg-grey sm">5</view>
+      </view>
+      <view class="move">
+        <view class="bg-red">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 我创建的
+    </view>
+  </view>
+  <view class="cu-list menu-avatar">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{Class_List_Create}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+      <view class="content">
+        <view class="text-grey">{{item.Class_Name}}</view>
+        <view class="text-gray text-sm">
+          <text class="cuIcon-infofill text-red"></text> {{item.Class_Profession}} - {{item.Class_Grade}}</view>
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.Class_ID}}</view>
+        <view class="cu-tag round bg-grey sm">5</view>
+      </view>
+      <view class="move">
+        <view class="bg-red">删除</view>
+      </view>
+    </view>
+  </view>
+
