@@ -1,0 +1,13 @@
+<!--components/floatbut/index.wxml-->
+<view class='float_box'>
+  <view>
+    <view class='float_main'>
+      <navigator class="note_add" url="/pages/user/note/add/index">
+        <van-icon name="plus" ></van-icon>
+      </navigator>
+    </view>
+    <view class='float_main' catchtap='itemclick' wx:if="{{backTop ==true}}">
+        <van-icon name="arrow-up"></van-icon>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,130 @@
+.tree_list_dis_b{
+	display: flex;
+	justify-content: space-between;
+}
+.tree_list_dis_c{
+	display: flex;
+	align-items: center;
+
+}
+
+.tree_list_mt10{
+  margin-top: 10px;
+}
+
+.tree_list .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tree_list{
+  margin: 10px;
+}
+
+
+.tree_list .top .left {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+
+  align-items: center;
+}
+
+.tree_list .top .left .store {
+  margin: 0 10rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.tree_list .top .right{
+  width: 200rpx;
+
+}
+
+.tree_list .item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin: 20rpx 0 0;
+}
+
+.tree_list .item .left {
+  margin-right: 20rpx;
+
+}
+.cuIcon-titles{
+height: 100%;
+width: 4px;
+
+background-color:  #1D4259
+}
+.tree_list .item .left image {
+  width: 260rpx;
+  height: 130rpx;
+
+
+}
+
+.tree_list .item .content .title {
+  font-size: 28rpx;
+  line-height: 45rpx;
+}
+
+.tree_list .item .content .type {
+  margin: 6rpx 0;
+  font-size: 24rpx;
+  color: #909399;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.tree_list .item .content .delivery-time {
+  color: #0081ff;
+  font-size: 24rpx;
+}
+
+.tree_list .item .right {
+  margin-left: 10rpx;
+  padding-top: 20rpx;
+  text-align: right;
+}
+
+.tree_list .item .right .decimal {
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}
+
+.tree_list .item .right .number {
+  color: #909399;
+  font-size: 24rpx;
+}
+
+
+.tree_list .bottom {
+  line-height: 70rpx;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.tree_list .bottom .btnBox .btn {
+  line-height: 52rpx;
+  width: 140rpx;
+  btree_list-radius: 12rpx;
+  font-size: 26rpx;
+  text-align: center;
+  color: #909399;
+}
+
+.tree_list .bottom .btnBox .evaluate {
+  color: #fff;
+background-color: #1D4259;
+}

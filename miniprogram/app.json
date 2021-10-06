@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/user/index/index",
+    "pages/found/index/index",
+    "pages/user/data/data",
+    "pages/user/revise/index",
+    "pages/user/create/index",
+    "pages/user/Org_Manage/index",
+    "pages/user/Join_Class/index"
+  ],
+  "window": {
+    "backgroundColor": "#f7f7f7",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3963BC",
+    "navigationBarTitleText": "Star 助手",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom": "./components/cu-custom/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

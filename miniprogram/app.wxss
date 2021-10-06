@@ -1,0 +1,106 @@
+@import "style/color_ui.wxss";
+@import "style/Star_ui.wxss";
+@import "style/icon.wxss";
+image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.main {
+  animation: fadeIn .3s;/*页面响应速度*/
+  background-color:  #f8f8f8;
+}
+
+/**app.wxss**/
+page, input, .place-holder {
+  font-family: "STHeitiTC-Light", "Microsoft YaHei Light", "Hiragino Sans GB", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 32rpx;
+}
+
+.bold {
+  font-weight: bold;
+}
+.center {
+  text-align: center;
+}
+.box-shadow {
+  border-radius: 10rpx;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+}
+.alink {
+  color: #d96459 !important;
+  border-bottom: 2rpx solid #ffe4e4;
+}
+.wrap {
+  padding: 0 30rpx;
+}
+.sub-text {
+  font-size: 26rpx;
+  color: #7A7E83;
+}
+.logo-color {
+  color: #0081ff;
+}
+.logo-bg-color {
+  background-color: #0081ff;
+}
+.tabbar-color {
+  color: #d96459;
+}
+.tabbar-bg-color {
+  background-color: #d96459;
+}
+.loading {
+  width: 250rpx;
+  height: 100rpx;
+  display: block;
+  margin: calc(50vh - 60rpx) auto;
+}
+.btm-loading {
+  width: 250rpx;
+  height: 100rpx;
+  display: block;
+  margin: 20rpx auto;
+}
+.mybtn-primary {
+  color: #fff;
+  font-weight: normal;
+  background: #0081ff;
+}
+.mybtn-primary[disabled] {
+  color: #fff !important;
+  background: #0081ff !important;
+  opacity: 0.85;
+}
+.mybtn-hover {
+  opacity: 0.85;
+}
+.mybtn-warning {
+  color: #fff;
+  background: #d96459;
+}
+
+/* empty */
+.empty {
+  margin-top: 35vh;
+}
+.empty image {
+  width: 100rpx;
+  height: 100rpx;
+  display: block;
+  margin: 30rpx auto;
+}
+.empty text {
+  font-size: 28rpx;
+  color: #7A7E83;
+}
+
+.van-skeleton {
+  margin-top: 40rpx;
+}
+
+.van-tabs__line {
+  background-color: #d96459 !important;
+}
