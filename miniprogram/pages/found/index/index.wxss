@@ -1,0 +1,15 @@
+/* pages/found/index/index.wxss */
+/* 悬浮搜索 */
+.search {
+  width: 75rpx;
+  height: 75rpx;
+  border-radius: 50%;
+  position: fixed;
+  right: 40rpx;
+  bottom: 150rpx;
+  color: #fff;
+  z-index: 100;
+  padding-left: 15rpx;
+  padding-top: 13rpx;
+  font-size: 25px;
+}

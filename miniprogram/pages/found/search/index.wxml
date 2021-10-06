@@ -1,0 +1,65 @@
+<!--pages/work/search/index.wxml-->
+<view class="box bg-white">
+  <!-- 搜索框和按钮 -->
+  <cu-custom bgColor="bg-blue " isBack="{{true}}">
+    <view slot="content">搜索文章</view>
+  </cu-custom>
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input bindinput='searchInput' bindconfirm="submitSearch" confirm-type="search" value="{{searchContent}}"
+        type="text" placeholder="搜索文章"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green light shadow-blur round" catchtap="submitSearch" style="width:100%;">搜索</button>
+    </view>
+  </view>
+  <!-- 卡片式展示 -->
+  <list list="{{lists}}" loding="{{loding}}"></list>
+</view>
+
+<view style="text-align: center;">
+  <van-dialog id="van-dialog" />
+</view>
+
+<view wx:if="{{showTips}}">
+  <van-empty image="search" description="顶部搜索快速查找" />
+</view>
+
+<view wx:if="{{!showTips && lists.length === 0}}">
+  <van-empty image="search" description="未搜索到相关校招" />
+</view>
+
+
+<wxs module="m1">
+  function format(ts) {
+    var d = getDate(ts)
+    var myDate = getDate();
+    return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+  }
+  module.exports.format = format
+</wxs>
+
+<wxs module="m2">
+  function format(ts) {
+    var d = getDate(ts)
+    var myDate = getDate();
+    var theTime = d - myDate
+    var minute = 0; // 分
+    var hour = 0;//小时
+    var day = 0
+    if (theTime > 60) {
+      minute = parseInt(theTime / 60 / 1000);
+      theTime = parseInt(theTime % 60);
+      if (minute > 60) {
+        hour = parseInt(minute / 60);
+      }
+      if (hour > 24) {
+        day = parseInt(hour / 24);
+      }
+    }
+    console.log(day)
+    return day
+  }
+  module.exports.format = format
+</wxs>
