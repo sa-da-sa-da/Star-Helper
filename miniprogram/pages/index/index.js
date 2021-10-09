@@ -81,7 +81,7 @@ Page({
       database: "User"
     }
     // 调用云函数，获取eachData条press数据
-    Pro.Class_Cloud("Index_List", data).then(res => {
+    Pro.Tree_cloud("Index_List", data).then(res => {
       let data = res.data.data
       let list = this.data.list
       if (this.data.page == 1) {

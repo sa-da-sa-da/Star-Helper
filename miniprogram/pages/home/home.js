@@ -1,39 +1,49 @@
 import api from '../../utils/api.js';
-import Pro from '../../utils/request.js';
+import {
+  config
+} from '../../utils/config.js'
+const app = getApp()
 Component({
-  options: {
-    addGlobalClass: true
-  },
-  properties: {
-    popr: {
-      type: Number,
-      default: 0,
-    },
-  },
   data: {
-    TabCur: 0,
-    scrollLeft:0
+    TabCur: "Message_Type_System",
+    cardCur: 0,
   },
-  ready(){
-    this.initial()
+  created() {
+    this.SwiperList()
+    this.IndexMessage()
+    this.IndexMessageType()
   },
   methods: {
-    tabSelect(e) {
-      this.setData({
-        TabCur: e.currentTarget.dataset.id,
-        scrollLeft: (e.currentTarget.dataset.id-1)*60
-      })
-    },
-    initial() {
-      Pro.Class_Get(api.GET_Swiper_List).then(res => {
+    SwiperList() {
+      api.GET_Swiper_List.then(res => {
         this.setData({
           SwiperList: res
         })
       })
     },
-    tz_swiper(e) {
-      wx.navigateTo({
-        url: "../../pages/details/article_details/article_details?id=" + e.currentTarget.dataset.url
+    tabSelect(e) {
+      app.globalData.IndexMessageType = e.currentTarget.dataset.id;
+      this.setData({
+        TabCur: e.currentTarget.dataset.id,
+      })
+      this.IndexMessage(e)
+    },
+    IndexMessageType() {
+      api.GET_Message_Type.then(res => {
+        this.setData({
+          Message_Type: res.fields[4].enumElements
+        })
+      })
+    },
+    IndexMessage(e) {
+      wx.cloud.database({
+        env: config.EnvID
+      }).collection('Message_List').where({
+        Message_Type: app.globalData.IndexMessageType || this.data.TabCur
+      }).get().then(res => {
+        this.setData({
+          Message_List: res.data
+        })
       })
     },
     cardSwiper(e) {
@@ -41,24 +51,15 @@ Component({
         cardCur: e.detail.current
       })
     },
-    yg(){
-      wx.navigateToMiniProgram({
-        appId: "wx85e06ec2a5d5127e",
-        },
-      )
+    tz_swiper(e) {
+      wx.navigateTo({
+        url: "../../pages/details/article_details/article_details?id=" + e.currentTarget.dataset.url
+      })
     },
     tz(e) {
       wx.navigateTo({
-        url: "../../pages/" + e.currentTarget.dataset.a + "?id=" + e.currentTarget.dataset.id
-      })
-    },
-    // 跳转到机器人页面
-    jump_to_chatbot: function (e) {
-      console.log(e.currentTarget.dataset.id)
-      wx.navigateTo({
-        url: "../home/" + e.currentTarget.dataset.url
+        url: "/pages/" + e.currentTarget.dataset.url + "?id=" + e.currentTarget.dataset.id
       })
     },
   }
 })
-    

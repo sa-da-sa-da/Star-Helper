@@ -1,6 +1,9 @@
 // pages/user/revise/index.js
 import api from "../../../utils/api.js"
-import Pro from "../../../utils/request.js"
+import config from "../../../utils/config.js"
+const db = wx.cloud.database({
+  env: config.EnvId
+})
 const app = getApp();
 Page({
   data: {
@@ -16,7 +19,7 @@ Page({
     this.GetInfo()
   },
   GetInfo() {
-    Pro.Class_Get(api.GET_User).then(res => {
+    api.GET_User.then(res => {
       console.log('编辑个人资料：', res[0]);
       this.setData({
         User_Name: res[0].User_Name,
@@ -140,9 +143,6 @@ Page({
       }
     })
   },
-
-
-
   SubMit_Btn() {
     let data = {
       User_Name: this.data.User_Name,
@@ -162,15 +162,26 @@ Page({
     if (data) {
       let userid = wx.getStorageSync('userInfo')
       console.log(userid)
-      api.GET_User.doc = userid._id
-      api.GET_User.update = {
-          data
-        },
-        Pro.Class_Get(api.GET_User).then(res => {
-          this.setData({
-            data
-          })
+      db.collection('User').doc(userid._id).update({
+        data,
+      }).then( res =>{
+        wx.showToast({
+          title: '修改成功',
+          icon: 'success',
+          duration: 1000
         })
+      }).catch(res=>{
+        wx.showToast({
+          title: '修改失败',
+          icon: 'error',
+          duration: 1000
+        })
+      })
+      db.collection('User').get().then(res => {
+        this.setData({
+          data
+        })
+      })
     }
   }
 })

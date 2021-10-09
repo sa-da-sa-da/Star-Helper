@@ -1,24 +1,24 @@
 <!--pages/found/index/index.wxml-->
 <cu-custom bgColor="bg-blue">
-	<view slot="content">
-		Star 教技
-	</view>
+  <view slot="content">
+    Star 教技
+  </view>
 </cu-custom>
 <view class="loding_bg" wx:if="{{loding}}">
-	<view>
-		<image class="loding_img" src="../../../images/loding.gif">
-		</image>
-	</view>
-	<view class="mt10"> 数据加载中</view>
+  <view>
+    <image class="loding_img" src="../../../images/loding.gif">
+    </image>
+  </view>
+  <view class="mt10"> 数据加载中</view>
 </view>
 <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
-	<view class="cu-item {{item.value==TabCur?'text-green cur':''}}" wx:for="{{Article_Type}}" wx:key bindtap="tabSelect"
-		data-id="{{item.value}}">
-		{{item.label}}
-	</view>
+  <view class="cu-item {{item.value==TabCur?'text-green cur':''}}" wx:for="{{Article_Type}}" wx:key bindtap="tabSelect"
+    data-id="{{item.value}}">
+    {{item.label}}
+  </view>
 </scroll-view>
 <view wx:for="{{Article_List}}" wx:key wx:if="{{item.Article_Type==TabCur}}">
- <view class="cu-card article" wx:if="{{!loding}}" wx:for="{{list}}" wx:key="this" wx:index="index"
+  <view class="cu-card article" wx:if="{{!loding}}" wx:for="{{Article_List}}" wx:key="this" wx:index="index"
     data-id="{{item._id}}" bindtap="tz" data-url="Page_Article/Article/index" hover-class="item-hover"
     hover-stay-time="100">
     <view class="cu-item shadow ">
@@ -38,16 +38,16 @@
       </view>
       <text>\n</text>
       <view class="text-gray text-sm text-right">
-          <view class="cu-tag bg-blue light sm radius">{{item.Article_Origin}}</view>
-          <text class="cuIcon-timefill margin-lr-xs">{{m1.format(item._createTime)||'2021-10-01'}}</text>
-          <text class="cuIcon-appreciatefill margin-lr-xs">{{item.Article_Like||0}}</text>
-          <text class="cuIcon-favorfill margin-lr-xs">{{item.Article_Star||0}}</text>
-          <text class="cuIcon-messagefill margin-lr-xs">{{item.Article_Comment||0}}</text>
-          <text class="cuIcon-hotfill margin-lr-xs">{{item.Article_Temperature||0}}</text>
-        </view>
+        <view class="cu-tag bg-blue light sm radius">{{item.Article_Origin}}</view>
+        <text class="cuIcon-timefill margin-lr-xs">{{m1.format(item._createTime)||'2021-10-01'}}</text>
+        <text class="cuIcon-appreciatefill margin-lr-xs">{{item.Article_Like||0}}</text>
+        <text class="cuIcon-favorfill margin-lr-xs">{{item.Article_Star||0}}</text>
+        <text class="cuIcon-messagefill margin-lr-xs">{{item.Article_Comment||0}}</text>
+        <text class="cuIcon-hotfill margin-lr-xs">{{item.Article_Temperature||0}}</text>
+      </view>
     </view>
   </view>
-  
+
   <wxs module="m1">
     function format(ts) {
       var d = getDate(ts)
@@ -83,17 +83,14 @@
     }
     module.exports.format = format
   </wxs>
-	<PageArticleList list="{{Article_List}}" loding="{{loding}}"></PageArticleList>
 </view>
 <!-- 底部提示&Action -->
 <view style="padding-bottom: calc(env(safe-area-inset-bottom)/2);" wx:if="{{!loding}}">
-    <view class="solid-bottom text-sm text-center">
-      <text class="text-grey text-center">到底啦，更多文章请查看其他模块</text>
-    </view>
+  <view class="solid-bottom text-sm text-center">
+    <text class="text-grey text-center">到底啦，更多文章请查看其他模块</text>
   </view>
+</view>
 <!--悬浮搜索-->
 <view class="search bg-blue light" bindtap="JumpSearchPages" data-url="search/index">
-	<view class="cuIcon-search" />
+  <view class="cuIcon-search" />
 </view>
-<!--快捷置顶-->
-<floatbut backTop="{{backTop}}"></floatbut>

@@ -3,12 +3,6 @@
 @import "../../../style/color_ui.wxss";
 @import '../../../style/icon.wxss';
 
-.user {
-  background: #f8f8f8;
-  width: 100%;
-  animation: fadeIn .3s;
-}
-
 .cu-dialog{
   width: 500rpx;
 }

@@ -1,55 +1,97 @@
 <!--pages/home/home.wxml-->
 <cu-custom bgColor="bg-blue">
-	<view slot="content">
-		Star 教技
-	</view>
-	<view slot="right">
-		<view class="action">
-			<navigator url="/pages/user/sign/index" hover-class="none">
-				<image class="cuIcon-yiqiandao" bindtap="BackPage"></image>
-			</navigator>
-		</view>
-	</view>
+  <view slot="content">
+    Star 教技
+  </view>
+  <view slot="right">
+    <view class="action">
+      <navigator url="/pages/user/sign/index" hover-class="none">
+        <image class="cuIcon-yiqiandao" bindtap="BackPage"></image>
+      </navigator>
+    </view>
+  </view>
 </cu-custom>
 <swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
-	duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-	<swiper-item wx:for="{{SwiperList}}" wx:key="ids" class="{{cardCur==index?'cur':''}}" id="{{item.goto}}"
-		bindtap="tz_swiper" data-url="{{item.navigateTo}}">
-		<view class="swiper-item">
-			<image src="{{item.Swiper_Url}}" mode="aspectFill" wx:if="{{item.Swiper_type=='image'}}"></image>
-			<video src="{{item.Swiper_Url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
-				objectFit="cover" wx:if="{{item.Swiper_type=='video'}}"></video>
-		</view>
-	</swiper-item>
+  duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item wx:for="{{SwiperList}}" wx:key="ids" class="{{cardCur==index?'cur':''}}" id="{{item.goto}}"
+    bindtap="tz_swiper" data-url="{{item.navigateTo}}">
+    <view class="swiper-item">
+      <image src="{{item.Swiper_Url}}" mode="aspectFill" wx:if="{{item.Swiper_type=='image'}}"></image>
+      <video src="{{item.Swiper_Url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+        objectFit="cover" wx:if="{{item.Swiper_type=='video'}}"></video>
+    </view>
+  </swiper-item>
 </swiper>
-<scroll-view scroll-x class="bg-white nav text-center" scroll-with-animation scroll-left="{{scrollLeft}}">
-  <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{5}}" wx:key="_id" bindtap="tabSelect" data-id="{{index}}">
-    Tab{{index}}
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{item.value==TabCur?'text-green cur':''}}" wx:for="{{Message_Type}}" wx:key bindtap="tabSelect"
+    data-id="{{item.value}}">
+    {{item.label}}
   </view>
 </scroll-view>
-<view wx:for="{{10}}" wx:key="_id" wx:if="{{index==TabCur}}">
-  <view class="cu-card article {{isCard?'no-card':''}}">
-  <view class="cu-item shadow">
-    <view class="title">
-      <view class="text-cut">无意者 烈火焚身;以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。</view>
-    </view>
-    <view class="content">
-      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
-      <view class="desc">
-        <view class="text-content"> 折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！</view>
-        <view>
-          <view class="cu-tag bg-red light sm round">正义天使</view>
-          <view class="cu-tag bg-green light sm round">史诗</view>
+<view wx:for="{{Message_List}}" wx:key wx:if="{{item.Message_Type==TabCur}}">
+  <view class="cu-card article" wx:if="{{!loding}}" wx:for="{{Message_List}}" wx:key="this" wx:index="index"
+    data-id="{{item._id}}" bindtap="tz" data-url="Page_Article/Article/index" hover-class="item-hover"
+    hover-stay-time="100">
+    <view class="cu-item shadow ">
+      <view class="title">
+        <view class="text-cut">{{item.Message_TiTle}}</view>
+      </view>
+      <view class="content">
+        <image src="{{item.Message_Img}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="text-content"> {{item.Message_Preface}}</view>
         </view>
       </view>
-    </view><text>\n</text>
-		<view class="text-gray text-sm">
-			<view class="cu-tag bg-blue light text-left sm radius">来源</view>
-      <text class="cuIcon-attentionfill text-right margin-lr-xs">2020-01-29</text> 
-      <text class="cuIcon-attentionfill text-right margin-lr-xs">100</text> 
-      <text class="cuIcon-appreciatefill text-right margin-lr-xs">200</text> 
-      <text class="cuIcon-messagefill text-right margin-lr-xs"> 300</text>
+      <text>\n</text>
+      <view class="text-gray text-sm text-right">
+        <view class="cu-tag bg-blue light sm radius">{{item.Message_Origin}}</view>
+        <text class="cuIcon-timefill margin-lr-xs">{{m1.format(item._createTime)||'2021-10-01'}}</text>
+        <text class="cuIcon-appreciatefill margin-lr-xs">{{item.Message_Comment||0}}</text>
+        <text class="cuIcon-favorfill margin-lr-xs">{{item.Message_Focus||0}}</text>
+        <text class="cuIcon-messagefill margin-lr-xs">{{item.Message_Comment||0}}</text>
+        <text class="cuIcon-hotfill margin-lr-xs">{{item.Message_Pageviews||0}}</text>
+      </view>
     </view>
   </view>
+  <wxs module="m1">
+    function format(ts) {
+      var d = getDate(ts)
+      var myDate = getDate();
+      return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+    }
+    module.exports.format = format
+  </wxs>
+
+  <wxs module="m2">
+    function format(ts) {
+      var d = getDate(ts)
+      var myDate = getDate();
+      var theTime = d - myDate
+      var minute = 0; // 分
+      var hour = 0;//小时
+      var day = 0
+      if (theTime > 60) {
+        minute = parseInt(theTime / 60 / 1000);
+        theTime = parseInt(theTime % 60);
+        if (minute > 60) {
+          hour = parseInt(minute / 60);
+        }
+        if (hour > 24) {
+          day = parseInt(hour / 24 + 1);
+        }
+        else if (hour > 0) {
+          day = 1
+        }
+      }
+      console.log(day)
+      return day
+    }
+    module.exports.format = format
+  </wxs>
 </view>
+<!-- 底部提示&Action -->
+<view style="padding-bottom: calc(env(safe-area-inset-bottom)/2);" wx:if="{{!loding}}">
+  <view class="solid-bottom text-sm text-center">
+    <text class="text-grey text-center">消息到底啦！</text>
+  </view>
 </view>

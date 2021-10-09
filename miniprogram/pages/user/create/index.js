@@ -6,6 +6,7 @@ const db = wx.cloud.database({
   env: config.EnvId,
 })
 const app = getApp();
+const _ = db.command
 let Class_ID = ""
 Page({
   data: {
@@ -102,8 +103,8 @@ Page({
   },
 
   SubMit_Btn() {
-    if (this.data.Class_Name && this.data.Class_School && this.data.Class_Profession  && this.data.Class_Grade) {
-      let userid = wx.getStorageSync('userInfo')
+    let userid = wx.getStorageSync('userInfo')
+    if (this.data.Class_Name && this.data.Class_School && this.data.Class_Profession && this.data.Class_Grade) {
       let data = {
         Class_Name: this.data.Class_Name,
         Class_School: this.data.Class_School,
@@ -114,33 +115,42 @@ Page({
       }
       if (data) {
         db.collection('Class').add({
-          data,
-          success(res) {
-            wx.showToast({
-              title: '创建成功',
-              icon: 'success',
-              duration: 1000
+            data,
+            success(res) {
+              db.collection('User').doc(data.Class_Owner).update({
+                  data: {
+                    User_Class:_.push({
+                        each: [[data.Class_ID]],
+                        position: 0
+                  })}
+                }),
+                wx.showToast({
+                  title: '创建成功',
+                  icon: 'success',
+                  duration: 1000
+                })
+            },
+            fail(res) {
+              wx.showToast({
+                title: '创建失败',
+                icon: 'error',
+                duration: 1000
+              })
+            },
+          }),
+
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1,
             })
-          },
-          fail(res) {
-            wx.showToast({
-              title: '创建失败',
-              icon: 'error',
-              duration: 1000
-            })
-          },
-        }), setTimeout(() => {
-          wx.navigateBack({
-            delta: 1,
-          })
-        }, 1000);
+          }, 1000);
       }
-    }else {
+    } else {
       wx.showToast({
         title: '请填写完整',
         icon: 'error',
         duration: 1500
       })
     }
-  } 
+  }
 })

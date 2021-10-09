@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "详情内容",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "floatbut":"../../../components/page_floatbut/index",
+    "towxml":"towxml"
+  }
+}

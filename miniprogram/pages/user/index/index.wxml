@@ -1,111 +1,107 @@
 <!--pages/User/index/index.wxml-->
-<view class="user">
-	<view class="cu-modal show" wx:if="{{show}}">
-		<view class="cu-dialog">
-			<view class="cu-bar bg-white justify-end">
-				<view class="content">微信登录</view>
-				<view class="action" bindtap="hideModal">
-					<text class="cuIcon-close text-red"></text>
-				</view>
-			</view>
-			<view class="padding">
-				<view class="logo">
-					<image
-						src="cloud://star-class-7gtuosvtef5d9ccc.7374-star-class-7gtuosvtef5d9ccc-1305830139/images/方形logo.png">
-					</image>
-				</view>
-				<view class='content2'>
-					<view>Star 助手申请获取以下权限</view>
-					<text>获得你的公开信息(昵称，头像等)</text>
-					<text>未成年人应先获得监护人同意</text>
-				</view>
-			</view>
-			<view class="cu-bar bg-white ">
-				<view class="actic">
-					<button class="cu-btn bg_kl3" bindtap="hideModal">取消</button>
-					<button bindtap="getUserProfile" size="default" class="cu-btn b_kl4">确定</button>
-				</view>
-			</view>
-		</view>
-	</view>
-	<!--添加背景图-->
-	<view class="user-section" style="padding-top:{{CustomBar-10}}px;">
-		<view class="user-info-box">
-			<view class="portrait-box">
-				<view class="portrait cu-avatar round lg margin-left" style="background-image:url({{User_AvatarUrl}});">
-					<view class="cu-tag badge {{User_Gender?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>
-				</view>
-				<view class="info-img">
-					<image style="position: relative; " src="" />
 
-				</view>
-			</view>
-			<view class="info-box">
-				<text class="username">{{User_NickName||'游客'}}</text>
-				<view class="username2">愿有一天</view>
-				<view class="username2">你能把优秀发挥到极致</view>
-				<text class="username2">用技术改变教育未来\n</text>
-				<text class="username2">掌握技术，致力教育</text>
-				<navigator class="bd_user" hover-class='none' url="../user/sign/index"
-					style="position: fixed; left: 654rpx; top: 161rpx">
-					签到</navigator>
+<view class="cu-modal show" wx:if="{{show}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">微信登录</view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-red"></text>
 			</view>
 		</view>
-		<view class="tj-sction ">
-			<view class="tj-item" bindtap="tz" data-a="user/note/index"><text class="num">{{ nt ||0}}</text><text
-					class="num2">笔记</text>
+		<view class="padding">
+			<view class="logo">
+				<image src="cloud://star-class-7gtuosvtef5d9ccc.7374-star-class-7gtuosvtef5d9ccc-1305830139/images/方形logo.png">
+				</image>
 			</view>
-			<view class="tj-item" bindtap="tz" data-a="user/favorite/favorite"><text class="num">{{sc||0}}</text><text
-					class="num2">收藏</text>
+			<view class='content2'>
+				<view>Star 助手申请获取以下权限</view>
+				<text>获得你的公开信息(昵称，头像等)</text>
+				<text>未成年人应先获得监护人同意</text>
 			</view>
-			<view class="tj-item" bindtap="tz" data-a="user/collect/index">
-				<text class="num">{{dz||0}}</text>
-				<text class="num2">点赞</text>
+		</view>
+		<view class="cu-bar bg-white ">
+			<view class="actic">
+				<button class="cu-btn bg_kl3" bindtap="hideModal">取消</button>
+				<button bindtap="getUserProfile" size="default" class="cu-btn b_kl4">确定</button>
 			</view>
 		</view>
 	</view>
 </view>
+<!--添加背景图-->
+<view class="user-section" style="padding-top:{{CustomBar-10}}px;">
+	<view class="user-info-box">
+		<view class="portrait-box">
+			<view class="portrait cu-avatar round lg margin-left" style="background-image:url({{User_AvatarUrl}});">
+				<view class="cu-tag badge {{User_Gender?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>
+			</view>
+			<view class="info-img">
+				<image style="position: relative; " src="" />
 
+			</view>
+		</view>
+		<view class="info-box">
+			<text class="username">{{User_NickName||'游客'}}</text>
+			<view class="username2">愿有一天</view>
+			<view class="username2">你能把优秀发挥到极致</view>
+			<text class="username2">用技术改变教育未来\n</text>
+			<text class="username2">掌握技术，致力教育</text>
+			<navigator class="bd_user" hover-class='none' url="../user/sign/index"
+				style="position: fixed; left: 654rpx; top: 161rpx">
+				签到</navigator>
+		</view>
+	</view>
+	<view class="tj-sction ">
+		<view class="tj-item" bindtap="tz" data-a="user/note/index"><text class="num">{{ nt ||0}}</text><text
+				class="num2">笔记</text>
+		</view>
+		<view class="tj-item" bindtap="tz" data-a="user/favorite/favorite"><text class="num">{{sc||0}}</text><text
+				class="num2">收藏</text>
+		</view>
+		<view class="tj-item" bindtap="tz" data-a="user/collect/index">
+			<text class="num">{{dz||0}}</text>
+			<text class="num2">点赞</text>
+		</view>
+	</view>
+</view>
 <view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
 	<view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
-		<navigator class="cuIcon-{{item.icon}} text-{{item.color}}" hover-class="none" url="{{item.url}}">
-		<text>{{item.name}}</text>
-		</navigator>
+		<view class="cuIcon-{{item.icon}} text-{{item.color}}" bindtap="UrlJump" data-url="{{item.url}}">
+			<text>{{item.name}}</text>
+		</view>
 	</view>
 </view>
 
 <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
 	<view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{itemList}}" wx:key>
-		<navigator class="content" hover-class="none" url="{{item.url}}">
+		<view class="content"data-url="{{item.url}}" bindtap="UrlJump">
 			<text class="cuIcon-{{item.icon}} text-{{item.color}}"></text>
 			<text class="text-grey">{{item.name}}</text>
+		</view>
+	</view>
+</view>
+<view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+	<view class="cu-item {{menuArrow?'arrow':''}}">
+		<navigator class="content" hover-class="none" url="../revise/index">
+			<text class="cuIcon-discoverfill text-orange"></text>
+			<text class="text-grey">使用指南</text>
+		</navigator>
+	</view>
+	<view class="cu-item {{menuArrow?'arrow':''}}">
+		<navigator class="content" hover-class="none" url="../revise/index">
+			<text class="cuIcon-discoverfill text-orange"></text>
+			<text class="text-grey">建议反馈</text>
+		</navigator>
+	</view>
+	<view class="cu-item {{menuArrow?'arrow':''}}">
+		<navigator class="content" hover-class="none" url="../revise/index">
+			<text class="cuIcon-discoverfill text-orange"></text>
+			<text class="text-grey">联系客服</text>
+		</navigator>
+	</view>
+	<view class="cu-item {{menuArrow?'arrow':''}}">
+		<navigator class="content" hover-class="none" url="../revise/index">
+			<text class="cuIcon-discoverfill text-orange"></text>
+			<text class="text-grey">技术支持</text>
 		</navigator>
 	</view>
 </view>
-	<view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
-		<view class="cu-item {{menuArrow?'arrow':''}}">
-			<navigator class="content" hover-class="none" url="../revise/index">
-				<text class="cuIcon-discoverfill text-orange"></text>
-				<text class="text-grey">使用指南</text>
-			</navigator>
-		</view>
-		<view class="cu-item {{menuArrow?'arrow':''}}">
-			<navigator class="content" hover-class="none" url="../revise/index">
-				<text class="cuIcon-discoverfill text-orange"></text>
-				<text class="text-grey">建议反馈</text>
-			</navigator>
-		</view>
-
-		<view class="cu-item {{menuArrow?'arrow':''}}">
-			<navigator class="content" hover-class="none" url="../revise/index">
-				<text class="cuIcon-discoverfill text-orange"></text>
-				<text class="text-grey">联系客服</text>
-			</navigator>
-		</view>
-		<view class="cu-item {{menuArrow?'arrow':''}}">
-			<navigator class="content" hover-class="none" url="../revise/index">
-				<text class="cuIcon-discoverfill text-orange"></text>
-				<text class="text-grey">技术支持</text>
-			</navigator>
-		</view>
-	</view>

@@ -1,6 +1,9 @@
 const app = getApp()
 import api from "../../../utils/api.js"
-import Pro from "../../../utils/request.js"
+import {config} from "../../../utils/config.js"
+const db = wx.cloud.database({
+  env: config.EnvId
+})
 Component({
   data: {
     show: false,
@@ -12,34 +15,36 @@ Component({
     iconList: [{
       icon: 'profilefill',
       color: '#3963BC',
-      name: '组织管理',
-      url: '../Org_Manage/index'
+      name: '班级管理',
+      url: 'Org_Manage/index'
     }, {
       icon: 'peoplefill',
       color: '#3963BC',
-      name: '成员管理'
+      name: '成员管理',
+      url: 'Member_Manage/index'
     }, {
       icon: 'taoxiaopu',
       color: '#3963BC',
-      name: '操作记录'
+      name: '操作记录',
+      url:'Member_Manage/index'
     }],
     itemList: [{
         name: '修改信息',
         icon: 'discoverfill',color:'#3963BC',
-        url: '../revise/index',
+        url: 'revise/index',
       }, {
 
         name: '创建班级',
         icon: 'friendfamous',color:'#3963BC',
-        url: '../create/index',
+        url: 'create/index',
       }, {
         name: '加入班级',
         icon: 'friendadd',color:'#3963BC',
-        url: '../Join_Class/index',
+        url: 'Join_Class/index',
       }, {
         name: '邀请成员',
         icon: 'add',color:'#3963BC',
-        url: '',
+        url: 'Join_Class/index',
       }],
     gridCol: 3,
     skin: false,
@@ -53,12 +58,19 @@ Component({
     addGlobalClass: true
   },
   created() {
+    console.log(this.data.iconList)
     this.authorizer()
   },
   methods: {
     sz() {
       wx.openSetting({
         success: function (res) {}
+      })
+    },
+    UrlJump(e){
+      console.log(e)
+      wx.navigateTo({
+        url: "/pages/user/" + e.currentTarget.dataset.url
       })
     },
     ql() {
@@ -78,15 +90,13 @@ Component({
       wx.getUserProfile({
         desc: '展示用户信息',
         success: (res) => {
-          api.GET_User.doc = userid._id
-          api.GET_User.update = {
+          db.collection('User').doc(userid._id).update({
             data: {
               User_AvatarUrl: res.userInfo.avatarUrl,
               User_NickName: res.userInfo.nickName,
               User_Gender: res.userInfo.gender
             }
-          }
-          Pro.Class_Get(api.GET_User).then(res => {
+          }).then(res => {
             this.setData({
               show: false
             })
@@ -106,18 +116,17 @@ Component({
     },*/
     authorizer() {
       let that = this
-      Pro.Class_Get(api.GET_User).then(res => {
+      db.collection('User').get().then(res => {
         console.log(res)
-        if (res[0].User_AvatarUrl) {
-          //this.user_list()
-          console.log(res[0].User_AvatarUrl)
+        if (res.data[0].User_AvatarUrl) {
+          console.log(res.data[0].User_AvatarUrl)
           that.setData({
-            User_AvatarUrl: res[0].User_AvatarUrl,
-            User_NickName: res[0].User_NickName,
-            User_userin: res[0],
-            User_add_time: res[0].User_addtime,
-            User_openid: res[0].User_openid,
-            User_Gender: res[0].User_Gender
+            User_AvatarUrl: res.data[0].User_AvatarUrl,
+            User_NickName: res.data[0].User_NickName,
+            User_userin: res.data[0],
+            User_add_time: res.data[0].User_addtime,
+            User_openid: res.data[0].User_openid,
+            User_Gender: res.data[0].User_Gender
           })
         } else {
           this.setData({

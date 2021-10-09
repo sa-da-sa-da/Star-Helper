@@ -1,1 +1,4 @@
 /* pages/home/home.wxss */
+@import "../../style/color_ui.wxss";
+@import "../../style/Star_ui.wxss";
+@import "../../style/icon.wxss";

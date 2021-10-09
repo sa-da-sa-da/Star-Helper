@@ -5,7 +5,7 @@
   </cu-custom>
 </view>
 <view class="margin-lr-sm">
-  <form catchsubmit="SubMit_Btn">
+  <form catchsubmit="SubMit_JoinBtn">
     <view class="cu-form-group margin-top">
       <view class="title text-bold">班级名称*</view>
       <input placeholder="请输入您的班级名称" value="{{Class_Name}}" bindinput="Class_Name_Input"></input>
