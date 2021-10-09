@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-   
+    "PageArticleList": "../../../components/PageArticleList/index"
   }
 }

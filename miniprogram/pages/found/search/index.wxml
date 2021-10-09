@@ -15,19 +15,15 @@
     </view>
   </view>
   <!-- 卡片式展示 -->
-  <list list="{{lists}}" loding="{{loding}}"></list>
-</view>
-
-<view style="text-align: center;">
-  <van-dialog id="van-dialog" />
+  <PageArticleList list="{{lists}}" loding="{{loding}}"></PageArticleList>
 </view>
 
 <view wx:if="{{showTips}}">
-  <van-empty image="search" description="顶部搜索快速查找" />
+  <text class="text-black text-bold">顶部搜索快速查找</text>
 </view>
 
 <view wx:if="{{!showTips && lists.length === 0}}">
-  <van-empty image="search" description="未搜索到相关校招" />
+ <text class="text-black text-bold">未找到相关内容！</text>
 </view>
 
 

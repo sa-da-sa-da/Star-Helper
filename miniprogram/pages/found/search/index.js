@@ -1,8 +1,10 @@
 // pages/work/search/index.js
 
-import {config} from '../../../utils/config.js'
+import {
+  config
+} from '../../../utils/config.js'
 const db = wx.cloud.database({
-  env: config.EnvId
+  env: config.EnvID
 })
 const _ = db.command
 
@@ -78,6 +80,7 @@ Page({
    * 获取input中的搜索内容
    */
   searchInput: function (e) {
+    console.log(e.detail.value)
     this.setData({
       searchContent: e.detail.value
     })
@@ -91,27 +94,39 @@ Page({
       title: '搜索中...',
     })
     try {
-      let where = {}
-      where.mec = db.RegExp({
+      let searchContent = {}
+      searchContent = db.RegExp({
         regexp: '.*' + that.data.searchContent,
         options: 'i',
       })
+      //console.log(searchContent)
       // 正则表达式搜索
-      db.collection('press')
-        .where(where)
+      db.collection('Article_List')
+        .where(_.or([
+          {
+            Article_Content: searchContent
+          },{
+            Article_TiTle: searchContent
+          },{
+            Article_KeyWord: searchContent
+          },{
+            Article_Preface: searchContent
+          }
+      ]))
         .get({
           success: res => {
+            console.log(res)
             if (res.data.length > 0) {
               that.setData({
                 lists: res.data,
               })
             } else {
               that.setData({
-                lists:[],
+                lists: [],
               })
               Dialog.alert({
                 title: '温馨提示',
-                message: '未搜索到相关校招 请尝试其他关键词搜索',
+                message: '未搜索到相关内容，请尝试其他关键词搜索',
                 theme: 'round-button',
               }).then(() => {
                 // on close
