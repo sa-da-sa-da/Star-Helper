@@ -2,3 +2,10 @@
 @import "../../style/color_ui.wxss";
 @import "../../style/Star_ui.wxss";
 @import "../../style/icon.wxss";
+.HomeSwiperBackground{
+    height: 135px;
+    padding-top: 14px;
+    background: linear-gradient(to top,#f7f7f7, #3963BC);
+    width: 100%;
+    position: absolute;
+}

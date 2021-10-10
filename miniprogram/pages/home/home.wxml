@@ -11,6 +11,7 @@
     </view>
   </view>
 </cu-custom>
+<view class="HomeSwiperBackground"></view>
 <swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
   duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
   <swiper-item wx:for="{{SwiperList}}" wx:key="ids" class="{{cardCur==index?'cur':''}}" id="{{item.goto}}"
