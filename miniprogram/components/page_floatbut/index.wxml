@@ -3,11 +3,11 @@
   <view>
     <view class='float_main'>
       <navigator class="note_add" url="/pages/user/note/add/index">
-        <van-icon name="plus" ></van-icon>
+        <text class="cuIcon-add text-blue"></text>
       </navigator>
     </view>
     <view class='float_main' catchtap='itemclick' wx:if="{{backTop ==true}}">
-        <van-icon name="arrow-up"></van-icon>
+      <text class="cuIcon-fold text-blue"></text>
     </view>
   </view>
 </view>

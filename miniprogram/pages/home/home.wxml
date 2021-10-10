@@ -3,19 +3,12 @@
   <view slot="content">
     Star 教技
   </view>
-  <view slot="right">
-    <view class="action">
-      <navigator url="/pages/user/sign/index" hover-class="none">
-        <image class="cuIcon-yiqiandao" bindtap="BackPage"></image>
-      </navigator>
-    </view>
-  </view>
 </cu-custom>
 <view class="HomeSwiperBackground"></view>
 <swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
   duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
   <swiper-item wx:for="{{SwiperList}}" wx:key="ids" class="{{cardCur==index?'cur':''}}" id="{{item.goto}}"
-    bindtap="tz_swiper" data-url="{{item.navigateTo}}">
+     data-url="{{item.navigateTo}}">
     <view class="swiper-item">
       <image src="{{item.Swiper_Url}}" mode="aspectFill" wx:if="{{item.Swiper_type=='image'}}"></image>
       <video src="{{item.Swiper_Url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
@@ -31,7 +24,7 @@
 </scroll-view>
 <view wx:for="{{Message_List}}" wx:key wx:if="{{item.Message_Type==TabCur}}">
   <view class="cu-card article" wx:if="{{!loding}}" wx:for="{{Message_List}}" wx:key="this" wx:index="index"
-    data-id="{{item._id}}" bindtap="tz" data-url="Page_Article/Article/index" hover-class="item-hover"
+    data-id="{{item._id}}"  data-url="Page_Article/Article/index" hover-class="item-hover"
     hover-stay-time="100">
     <view class="cu-item shadow ">
       <view class="title">

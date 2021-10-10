@@ -43,14 +43,14 @@
           "scene": null
         },
         {
-          "name": "pages/updateRecord/index",
-          "pathName": "pages/updateRecord/index",
+          "name": "pages/found/index/index",
+          "pathName": "pages/found/index/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/updateRecordResult/index",
-          "pathName": "pages/updateRecordResult/index",
+          "name": "pages/user/Member_Manage/index",
+          "pathName": "pages/user/Member_Manage/index",
           "query": "",
           "scene": null
         },

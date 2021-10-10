@@ -1,5 +1,4 @@
 <!--pages/User/index/index.wxml-->
-
 <view class="cu-modal show" wx:if="{{show}}">
 	<view class="cu-dialog">
 		<view class="cu-bar bg-white justify-end">
@@ -40,10 +39,10 @@
 			</view>
 		</view>
 		<view class="info-box">
-			<text class="username">{{User_NickName||'游客'}}</text>
-			<view class="username2">愿有一天</view>
-			<view class="username2">你能把优秀发挥到极致</view>
-			<text class="username2">用技术改变教育未来\n</text>
+			<text class="username">{{User_Name||'游客'}}（{{User_NickName||'游客'}}）</text>
+			<view class="username2">{{User_Signature1||'愿有一天'}}</view>
+			<view class="username2">{{User_Signature2||'你能把优秀发挥到极致'}}</view>
+			<text class="username2">{{User_Signature3||'用技术改变教育未来'}}\n</text>
 			<text class="username2">掌握技术，致力教育</text>
 			<navigator class="bd_user" hover-class='none' url="../user/sign/index"
 				style="position: fixed; left: 654rpx; top: 161rpx">
@@ -73,13 +72,13 @@
 
 <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
 	<view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{itemList}}" wx:key>
-		<view class="content"data-url="{{item.url}}" bindtap="UrlJump">
+		<view class="content" data-url="{{item.url}}" bindtap="UrlJump">
 			<text class="cuIcon-{{item.icon}} text-{{item.color}}"></text>
 			<text class="text-grey">{{item.name}}</text>
 		</view>
 	</view>
 </view>
-<view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+<!--<view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
 	<view class="cu-item {{menuArrow?'arrow':''}}">
 		<navigator class="content" hover-class="none" url="../revise/index">
 			<text class="cuIcon-discoverfill text-orange"></text>
@@ -104,4 +103,4 @@
 			<text class="text-grey">技术支持</text>
 		</navigator>
 	</view>
-</view>
+</view>-->

@@ -8,7 +8,11 @@
     "pages/user/revise/index",
     "pages/user/create/index",
     "pages/user/Org_Manage/index",
-    "pages/user/Join_Class/index"
+    "pages/user/Join_Class/index",
+    "pages/Page_Article/Article/index",
+    "components/PageArticleList/index",
+    "pages/user/Member_Manage/index",
+    "pages/Page_Article/Message/index"
   ],
   "window": {
     "backgroundColor": "#f7f7f7",

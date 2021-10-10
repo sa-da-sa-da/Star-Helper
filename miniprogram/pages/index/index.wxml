@@ -3,7 +3,7 @@
   <view>
     <Home popr="{{hd_op}}" wx:if="{{id==1}}" />
     <Found wx:if="{{id==2}}" />
-    <Class wx:if="{{id==3}}" />
+    <!--<Class wx:if="{{id==3}}" />-->
     <User wx:if="{{id==4}}" />
   </view>
   <!-- 底部四个模块：首页、发现、课程、我的 -->
@@ -18,10 +18,10 @@
       <view class="cuIcon-discover" style="font-weight: 600;"></view>
       发现
     </view>
-    <view bindtap="changeTab" data-id="3" class="action jk text-gray {{id==3?'xzcg':''}}">
+   <!-- <view bindtap="changeTab" data-id="3" class="action jk text-gray {{id==3?'xzcg':''}}">
       <view class="cuIcon-form" style="font-weight: 600;"></view>
       课程
-    </view>
+    </view>-->
     <view bindtap="changeTab" data-id="4" class="action text-gray jk {{id==4?'xzcg':''}}">
       <view class="cuIcon-my" style="font-weight: 600;"></view>
       我的

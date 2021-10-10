@@ -122,11 +122,15 @@ Component({
           console.log(res.data[0].User_AvatarUrl)
           that.setData({
             User_AvatarUrl: res.data[0].User_AvatarUrl,
+            User_Name: res.data[0].User_Name,
             User_NickName: res.data[0].User_NickName,
             User_userin: res.data[0],
             User_add_time: res.data[0].User_addtime,
             User_openid: res.data[0].User_openid,
-            User_Gender: res.data[0].User_Gender
+            User_Gender: res.data[0].User_Gender,
+            User_Signature1: res.data[0].User_Signature1,
+            User_Signature2: res.data[0].User_Signature2,
+            User_Signature3: res.data[0].User_Signature3
           })
         } else {
           this.setData({

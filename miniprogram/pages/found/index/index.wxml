@@ -84,6 +84,7 @@
     module.exports.format = format
   </wxs>
 </view>
+
 <!-- 底部提示&Action -->
 <view style="padding-bottom: calc(env(safe-area-inset-bottom)/2);" wx:if="{{!loding}}">
   <view class="solid-bottom text-sm text-center">

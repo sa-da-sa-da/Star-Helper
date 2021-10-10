@@ -1,4 +1,5 @@
 /* components/floatbut/index.wxss */
+@import "../../style/icon.wxss";
 .float_box{
     position: fixed;
     bottom: 100rpx;

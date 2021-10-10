@@ -51,11 +51,11 @@ Component({
         cardCur: e.detail.current
       })
     },
-    tz_swiper(e) {
+    /*tz_swiper(e) {
       wx.navigateTo({
         url: "../../pages/details/article_details/article_details?id=" + e.currentTarget.dataset.url
       })
-    },
+    },*/
     tz(e) {
       wx.navigateTo({
         url: "/pages/" + e.currentTarget.dataset.url + "?id=" + e.currentTarget.dataset.id

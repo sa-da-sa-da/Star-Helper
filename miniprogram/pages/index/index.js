@@ -151,7 +151,7 @@ Page({
       }
     } else {
       return {
-        title: '获取校招资讯、内推，简历模板、在线刷题等',
+        title: '',
         imageUrl: "../../images/logo.jpg",
       }
     }
