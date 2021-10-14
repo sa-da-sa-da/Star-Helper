@@ -4,24 +4,15 @@
     <view slot="content">成员管理</view>
   </cu-custom>
 </view>
-<view class="cu-form-group margin-top">
-  <view class="title">当前选择的班级</view>
-  <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-    <view class="picker">
-      {{index?picker[index]:'请选择班级'}}
-      <!--{{index?picker[index].Class_Name:'请选择班级'}}-->
-    </view>
-  </picker>
-</view>
 <view class="cu-bar bg-white solid-bottom margin-top">
   <view class="action">
-    <text class="cuIcon-title text-blue "></text> 班级成员
+    <text class="cuIcon-title text-blue "></text>{{Class_Name}} - 班级成员
   </view>
 </view>
 <view class="cu-list menu-avatar">
   <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{Member_List}}" wx:key
     bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
-    data-target="move-box-{{index}}">
+    data-target="move-box-{{index}}" bindtap="JumpMemberManagePro" data-id="{{item._id}}" data-url="Member_Manage_Pro/index">
     <view class="cu-avatar round lg" style="background-image:url({{item.User_AvatarUrl}});"></view>
     <view class="content">
       <view class="text-grey">{{item.User_Name}}（{{item.User_NickName}}）</view>

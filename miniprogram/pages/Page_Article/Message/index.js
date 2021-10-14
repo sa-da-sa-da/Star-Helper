@@ -1,12 +1,12 @@
 //Study 页面文章组件
 import {config} from "../../../utils/config.js"
+import f from "../replace.js"
 const api = require('../../../utils/api.js');
 const time = require('../../../utils/time.js')
 const db = wx.cloud.database({
   env: config.EnvID
 })
 const app = getApp()
-import f from "../replace"
 Page({
   data: {
     id: "",
@@ -39,7 +39,7 @@ Page({
       withShareTicket: true,
       menus: ['shareAppMessage', 'shareTimeline']
     });
-    this.details_cs()
+    //this.details_cs()
   },
   pageLifetimes: {
     show: function () {
@@ -67,27 +67,25 @@ Page({
       loding: true
     })
     wx.cloud.callFunction({
-      name: 'Article_details2',
+      name: 'Message',
       data: {
+        Type: 'MessageDetailsPro',
         id: id,
       }
     }).then(res => {
       console.log(res)
-      console.log(res.result.Article_details)
-      let result = res.result.Article_details.Article_Content
+      console.log(res.result)
+      let result = res.result.Message_Content
       this.setData({
         loding: false
       })
-      result = f.replace(result)
+     // result = f.replace(result)
       this.setData({
-        Article_Content: result,
-        Article: res.result.Article_details
+        Message_Content: result,
+        Message: res.result
       })
     })
   },
-
-  
-  
   statr_sc(e) {
     let userInfo = wx.getStorageSync("userInfo")
     if (userInfo._openid) {
@@ -98,14 +96,14 @@ Page({
         mask: true,
         duration: 2000
       })
-      //console.log(that.data)
-      that.data.Article.Article_id = that.data.Article._id
-      //console.log(that.data.Article)
-      //console.log(e.currentTarget.dataset.id)
+      console.log(that.data)
+      that.data.Message.Message_id = that.data.Message._id
+      console.log(that.data.Message)
+      console.log(e.currentTarget.dataset.id)
       wx.cloud.callFunction({
         name: e.currentTarget.dataset.id,
         data: {
-          Article: that.data.Article
+          Message: that.data.Message
         }
       }).then(res => {
         wx.showToast({
@@ -114,7 +112,7 @@ Page({
           icon: 'none',
           mask: true
         })
-        this.details_cs(true)
+        //this.details_cs(true)
       })
     } else {
       wx.showToast({
@@ -128,8 +126,9 @@ Page({
   details_cs(bl) {
     //console.log(this.data.id)
     wx.cloud.callFunction({
-      name: 'Article_details',
+      name: '',
       data: {
+        Type: '',
         id: this.data.id,
         bl
       }
@@ -137,7 +136,7 @@ Page({
       //console.log(res.result)
       if (bl) {
         this.setData({
-          Article: res.result.data,
+          Message: res.result.data,
         })
       }
       this.setData({
@@ -154,22 +153,22 @@ Page({
     });
   },
   onShareAppMessage: function (res) {
-    console.log(this.data.Article.Article_Img)
+    console.log(this.data.Message.Message_Img)
     this.setData({
       fx_show: false
     })
     return {
-      title: this.data.Article.Article_TiTle,
-      path: '/pages/Page_Article/Article/index?id=' + this.data.Article._id + "&share=true",
-      imageUrl: this.data.Article.Article_Img || "",
+      title: this.data.Message.Message_TiTle,
+      path: '/pages/Page_Article/Message/index?id=' + this.data.Article._id + "&share=true",
+      imageUrl: this.data.Message.Message_Img || "",
     }
   },
 
   onShareTimeline: function (res) {
     console.log(res)
     return {
-      title: this.data.Article.tille,
-      imageUrl: this.data.Article.img
+      title: this.data.Message.tille,
+      imageUrl: this.data.Message.img
     }
   },
 

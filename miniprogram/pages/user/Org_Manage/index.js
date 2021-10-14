@@ -36,10 +36,23 @@ Page({
       })
     })
 
-    
+
   },
-
-
+  JumpOrgManagePro(e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '../Org_Manage/' + e.currentTarget.dataset.url + "?id=" + e.currentTarget.dataset.id,
+    })
+  },
+  JumpMemberManage(e){
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url:  e.currentTarget.dataset.url + "?id=" + e.currentTarget.dataset.id,
+    })
+  },
+  changeData: function () {
+    this.onLoad(); //最好是只写需要刷新的区域的代码，onload也可，效率低，有点low
+  },
   // ListTouch触摸开始
   ListTouchStart(e) {
     this.setData({

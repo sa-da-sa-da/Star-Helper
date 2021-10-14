@@ -3,19 +3,6 @@
 @import "../../../style/color_ui.wxss";
 @import "../../../style/Star_ui.wxss";
 @import "../../../style/icon.wxss";
-.search {
-  width: 75rpx;
-  height: 75rpx;
-  border-radius: 50%;
-  position: fixed;
-  right: 40rpx;
-  bottom: 150rpx;
-  color: #fff;
-  z-index: 100;
-  padding-left: 15rpx;
-  padding-top: 13rpx;
-  font-size: 25px;
-}
 
 /* 加载状态*/
 .loding_bg{
@@ -28,4 +15,33 @@
 .loding_img{
   width: 40px;
   height: 40px;
+}
+.search {
+  width: 75rpx;
+  height: 75rpx;
+  border-radius: 50%;
+  position: fixed;
+  right: 40rpx;
+  bottom: 150rpx;
+  color: #fff;
+  z-index: 100;
+  padding-left: 15rpx;
+  padding-top: 13rpx;
+  font-size: 25px;
+  top: 1306rpx;
+}
+
+.top {
+  width: 75rpx;
+  height: 75rpx;
+  border-radius: 50%;
+  position: fixed;
+  right: 40rpx;
+  bottom: 150rpx;
+  color: #fff;
+  z-index: 100;
+  padding-left: 15rpx;
+  padding-top: 13rpx;
+  font-size: 25px;
+  top: 1399rpx
 }

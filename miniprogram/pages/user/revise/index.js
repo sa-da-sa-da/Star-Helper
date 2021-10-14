@@ -11,7 +11,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     index: null,
     User_Birth_Date: '2021-01-01',
-    region: ['陕西省', '西安市', '雁塔区'],
+    User_Region: ['', '', ''],
     imgList: [],
     modalName: null,
   },
@@ -54,7 +54,7 @@ Page({
   },
   RegionChange: function (e) {
     this.setData({
-      region: e.detail.value
+      User_Region: e.detail.value
     })
   },
   User_School_Input(e) {
@@ -177,7 +177,9 @@ Page({
           duration: 1000
         })
       })
-      db.collection('User').get().then(res => {
+      db.collection('User').where({
+        _openid: userid._openid
+      }).get().then(res => {
         this.setData({
           data
         })

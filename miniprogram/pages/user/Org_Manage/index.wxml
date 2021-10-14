@@ -10,25 +10,28 @@
   </view>
 </view>
 <view class="cu-list menu-avatar">
-  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{Class_List_Create}}" wx:key
-    bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
-    data-target="move-box-{{index}}">
+  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" bindtouchstart="ListTouchStart"
+    bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}"
+    wx:for="{{Class_List_Create}}" wx:key bindtap="JumpMemberManage" data-id="{{item._id}}" data-url="../Member_Manage/index">
     <view class="cu-avatar round lg"
-      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);">
+    </view>
     <view class="content">
       <view>
         <view class="cu-tag round text-right xxs">名称：{{item.Class_Name}}</view>
         <view class="cu-tag round text-right xs">密钥：{{item.Class_ID}}</view>
       </view>
       <view class="text-gray text-sm">
-        <text class="cuIcon-infofill text-blue"></text>{{item.Class_School}}- {{item.Class_Profession}} 
+        <text class="cuIcon-infofill text-blue"></text>{{item.Class_School}}- {{item.Class_Profession}}
       </view>
     </view>
-    <view class="action">
+
+    <view class="action" >
       <view class="text-grey text-xs">{{item.Class_Grade}}</view>
       <view class="cu-tag round text-right xs">{{item.Class_Member.length + 1||1}} 人</view>
     </view>
     <view class="move">
+      <view class="bg-grey" bindtap="JumpOrgManagePro" data-id="{{item._id}}" data-url="Org_Manage_Pro/index">修改</view>
       <view class="bg-red">删除</view>
     </view>
   </view>
@@ -50,7 +53,7 @@
         <view class="cu-tag round text-right xs">密钥：{{item.Class_ID}}</view>
       </view>
       <view class="text-gray text-sm">
-        <text class="cuIcon-infofill text-red"></text> {{item.Class_School}}- {{item.Class_Profession}} 
+        <text class="cuIcon-infofill text-red"></text> {{item.Class_School}}- {{item.Class_Profession}}
       </view>
     </view>
     <view class="action">

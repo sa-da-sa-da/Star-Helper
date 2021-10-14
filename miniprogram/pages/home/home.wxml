@@ -8,7 +8,7 @@
 <swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
   duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
   <swiper-item wx:for="{{SwiperList}}" wx:key="ids" class="{{cardCur==index?'cur':''}}" id="{{item.goto}}"
-     data-url="{{item.navigateTo}}">
+    data-url="{{item.navigateTo}}">
     <view class="swiper-item">
       <image src="{{item.Swiper_Url}}" mode="aspectFill" wx:if="{{item.Swiper_type=='image'}}"></image>
       <video src="{{item.Swiper_Url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
@@ -16,16 +16,25 @@
     </view>
   </swiper-item>
 </swiper>
+
+<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+  <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
+    <view class="cuIcon-{{item.icon}} text-{{item.color}}" bindtap="UrlJump" data-url="{{item.url}}">
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+</view>
+
 <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
   <view class="cu-item {{item.value==TabCur?'text-green cur':''}}" wx:for="{{Message_Type}}" wx:key bindtap="tabSelect"
     data-id="{{item.value}}">
     {{item.label}}
   </view>
 </scroll-view>
-<view wx:for="{{Message_List}}" wx:key wx:if="{{item.Message_Type==TabCur}}">
-  <view class="cu-card article" wx:if="{{!loding}}" wx:for="{{Message_List}}" wx:key="this" wx:index="index"
-    data-id="{{item._id}}"  data-url="Page_Article/Article/index" hover-class="item-hover"
-    hover-stay-time="100">
+<view wx:for="{{M_List}}" wx:key="this" wx:index="index" data-id="{{item._id}}"
+  data-url="Page_Article/Message/index" hover-class="item-hover" wx:if="{{item.Message_Type==TabCur}}" bindtap="tz"
+  hover-class="item-hover">
+  <view class="cu-card article" wx:if="{{!loding}}" hover-stay-time="100">
     <view class="cu-item shadow ">
       <view class="title">
         <view class="text-cut">{{item.Message_TiTle}}</view>
@@ -42,50 +51,25 @@
         <text class="cuIcon-timefill margin-lr-xs">{{m1.format(item._createTime)||'2021-10-01'}}</text>
         <text class="cuIcon-appreciatefill margin-lr-xs">{{item.Message_Comment||0}}</text>
         <text class="cuIcon-favorfill margin-lr-xs">{{item.Message_Focus||0}}</text>
-        <text class="cuIcon-messagefill margin-lr-xs">{{item.Message_Comment||0}}</text>
         <text class="cuIcon-hotfill margin-lr-xs">{{item.Message_Pageviews||0}}</text>
       </view>
     </view>
   </view>
-  <wxs module="m1">
-    function format(ts) {
-      var d = getDate(ts)
-      var myDate = getDate();
-      return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
-    }
-    module.exports.format = format
-  </wxs>
 
-  <wxs module="m2">
-    function format(ts) {
-      var d = getDate(ts)
-      var myDate = getDate();
-      var theTime = d - myDate
-      var minute = 0; // 分
-      var hour = 0;//小时
-      var day = 0
-      if (theTime > 60) {
-        minute = parseInt(theTime / 60 / 1000);
-        theTime = parseInt(theTime % 60);
-        if (minute > 60) {
-          hour = parseInt(minute / 60);
-        }
-        if (hour > 24) {
-          day = parseInt(hour / 24 + 1);
-        }
-        else if (hour > 0) {
-          day = 1
-        }
-      }
-      console.log(day)
-      return day
-    }
-    module.exports.format = format
-  </wxs>
 </view>
 <!-- 底部提示&Action -->
 <view style="padding-bottom: calc(env(safe-area-inset-bottom)/2);" wx:if="{{!loding}}">
   <view class="solid-bottom text-sm text-center">
-    <text class="text-grey text-center">消息到底啦！</text>
+    <text>\n\n\n\n\n\n\n</text>
+    <text class="text-grey text-center" bindtap="ContinueLoding">到底啦，更多文章<text class="text-red">点击加载</text> </text>
+    <text>\n\n\n\n\n\n\n</text>
   </view>
 </view>
+<wxs module="m1">
+  function format(ts) {
+    var d = getDate(ts)
+    var myDate = getDate();
+    return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+  }
+  module.exports.format = format
+</wxs>

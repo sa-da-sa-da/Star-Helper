@@ -62,13 +62,13 @@
 		</view>
 	</view>
 </view>
-<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+<!--<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
 	<view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
 		<view class="cuIcon-{{item.icon}} text-{{item.color}}" bindtap="UrlJump" data-url="{{item.url}}">
 			<text>{{item.name}}</text>
 		</view>
 	</view>
-</view>
+</view>-->
 
 <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
 	<view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{itemList}}" wx:key>

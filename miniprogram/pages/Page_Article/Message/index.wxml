@@ -1,6 +1,6 @@
 <!--pages/Page_Artical/Artical/index.wxml-->
 <cu-custom bgColor="bg-blue" isBack="{{true}}" wx:if="{{fx_show}}">
-	<view slot="content">文章</view>
+	<view slot="content">消息详情</view>
 </cu-custom>
 <view class="loding_bg" wx:if="{{loding}}">
 	<view>
@@ -15,16 +15,15 @@
 		style="background-image:url('https://7465-test-4gn9gu0ucc6657ba-1304273986.tcb.qcloud.la/zx_top_new.png?sign=e5625217828be9e6f74c8aa5d92ea70c&t=1628297418')">
 		<view class="detail_bg">
 			<view class="tree_Article_tl">
-				{{Article.Article_TiTle}}
+				{{Message.Message_TiTle}}
 			</view>
 			<view class="tree_Article_time text-center ">
-				<text class="cuIcon-timefill  margin-lr-xs">发布时间：{{Article._createTime||'2021-10-01'}}</text>
+				<text class="cuIcon-timefill  margin-lr-xs">发布时间：{{Message._createTime||'2021-10-01'}}</text>
 			</view>
 			<view class='text-lg text-right'>
-				<text class="cuIcon-appreciatefill margin-lr-xs text-pink"></text>{{Article.Article_Like||0}}
-				<text class="cuIcon-favorfill margin-lr-xs text-yellow">{{Article.Article_Star||0}}</text>
-				<text class="cuIcon-messagefill margin-lr-xs text-orange">{{Article.Article_Comment||0}}</text>
-				<text class="cuIcon-hotfill margin-lr-xs text-red">{{Article.Article_Temperature||0}}</text>
+				<text class="cuIcon-appreciatefill margin-lr-xs text-pink"></text>{{Message.Message_Comment||0}}
+				<text class="cuIcon-favorfill margin-lr-xs text-yellow">{{Message.Message_Focus||0}}</text>
+				<text class="cuIcon-hotfill margin-lr-xs text-red">{{Message.Message_Pageviews||0}}</text>
 			</view>
 		</view>
 	</view>
@@ -32,104 +31,17 @@
 	<view class="tree_artice">
 		<view class="cu-capsule">
 			<view class="cu-tag bg-gradual-blue">
-				文章来源
+				消息来源
 			</view>
 			<view class="cu-tag line-blue">
-				{{Article.Article_Origin||'原创'}}
+				{{Message.Message_Origin||'原创'}}
 			</view>
 		</view>
 	</view>
 	<view class="detil">
-		<towxml style="width:140% ;" md="{{Article_Content}}"></towxml>
+		<towxml style="width:140% ;" md="{{Message_Content}}"></towxml>
 	</view>
-	<view class="dbu">
-		<!-- 评论 -->
-		<view class="search-form search-round search-index " maxlength="300" cursor-spacing="10" data-id="{{xw_list._id}}"
-			data-url="user/note/add_note/index">
-			<text class="cuIcon-write text-bold text-lg bg-grey light"> </text>
-			<input bindinput='commentInput' confirm-type="send" bindfocus="onInputFocus" name="inputComment"
-				value="{{commentContent}}" placeholder-style="color:#39b54a" placeholder="{{placeholder}}" focus="{{focus}}"
-				bindblur="onReplyBlur" />
-		</view>
-		<!-- 收藏/取消 -->
-		<view class="solid-bottom text-xxl padding" bindtap="statr_sc" data-id="Article_Star" wx:if="{{!star_show}}">
-			<text class='cuIcon-favor text-grey'></text>
-		</view>
-		<view class="solid-bottom text-xxl padding" bindtap="statr_sc" data-id="Article_Star" wx:else="{{star_show}}">
-			<text class='cuIcon-favorfill text-yellow'></text>
-		</view>
-		<!-- 点赞/取消 -->
-		<view class="solid-bottom text-xxl padding" bindtap="statr_sc" data-id="Article_Like" wx:if="{{!like_show}}">
-			<text class='cuIcon-appreciate text-grey '></text>
-		</view>
-		<view class="solid-bottom text-xxl padding" bindtap="statr_sc" data-id="Article_Like" wx:else="{{!like_show}}">
-			<text class='cuIcon-appreciatefill text-yellow'></text>
-		</view>
-		<view style="margin-right: 16rpx; ">
-			<button class="btn_share" open-type="share" data-index="1">
-				<view class="solid-bottom text-xxl padding">
-					<text class='cuIcon-forward text-grey'></text>
-				</view>
-			</button>
-		</view>
-		<!-- 发送评论 -->
-		<button class='cu-btn bg-green shadow-blur' style="height:8vw;width: 16vw;margin-right: 8rpx;"
-			bindtap="submitCommend" wx:if="{{isFocus}}">发送</button>
-	</view>
-
-	<!-- 评论列表 -->
-	<view class="bg-white margin-top-xs" id="the_id">
-		<!-- 评论数 -->
-		<view class="cu-bar bg-white">
-			<view class='action'>
-				<text class='cuIcon-titles text-orange '></text>
-				评论区
-			</view>
-		</view>
-		<!-- 评论内容 -->
-		<view class="solid-bottom text-xsl padding text-center" wx:if="{{commentList.length==0}}">
-			<view class=" cuIcon-more text-center"></view>
-			<text class="text-center text-xl padding">抢占沙发</text>
-		</view>
-		<view class="cu-list menu menu-avatar comment solids-top">
-			<view class="cu-item" wx:for="{{commentList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item"
-				data-idx="{{idx}}" data-id="{{item._id}}" data-name="{{item.cNickName}}" data-openid="{{item.cOpenId}}"
-				bindtap="focusComment">
-				<view class="cu-avatar round" style="background-image:url({{item.cAvatarUrl}});" data-id="{{item._id}}"
-					data-name="{{item.cNickName}}" data-openid="{{item.cOpenId}}" bindtap="focusComment"></view>
-				<view class='content'>
-					<view class='text-grey' data-id="{{item._id}}" data-name="{{item.cNickName}}" data-openid="{{item.cOpenId}}"
-						bindtap="focusComment" wx:if="{{item.isVip}}" style="color:red">
-						{{item.cNickName}}
-					</view>
-					<view class='text-grey light' data-id="{{item._id}}" data-name="{{item.cNickName}}"
-						data-openid="{{item.cOpenId}}" bindtap="focusComment" wx:else>
-						{{item.cNickName}}
-					</view>
-					<view class='text-gray text-content text-df'>{{item.comment}}</view>
-					<view class='padding-xs radius  text-sm text-gray'>
-						<view class="bg-gray lighty flex" wx:for="{{item.childComment}}" wx:key="id" wx:for-index="id"
-							wx:for-item="childItem">
-							<view data-id="{{item._id}}" data-name="{{childItem.cNickName}}" data-openid="{{childItem.cOpenId}}"
-								bindtap="focusComment">
-								<view class='text-grey' wx:if="{{childItem.isVip}}" style="color:red">
-									{{childItem.cNickName}}：</view>
-								<view class='text-grey' wx:else>{{childItem.cNickName}}：</view>
-							</view>
-							<view class='flex-sub'>{{childItem.comment}}</view>
-						</view>
-					</view>
-					<view class='flex justify-between'>
-						<view class='text-gray text-df'>{{item.createDate}}</view>
-						<view>
-							<text class="cuIcon-messagefill text-gray margin-left-sm"></text>
-							<text class="text-gray margin-left-xs">{{item.childComment.length}}</text>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<view style="padding:50rpx"></view>
-	</view>
+	<!-- 评论 -->
+	<!-- 确认收到 -->
 	<floatbut backTop="{{backTop}}"></floatbut>
 </view>

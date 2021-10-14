@@ -7,7 +7,7 @@
     <User wx:if="{{id==4}}" />
   </view>
   <!-- 底部四个模块：首页、发现、课程、我的 -->
-  <view class="cu-bar tabbar bg-white shadow foot">
+  <view class="cu-bar tabbar bg-white shadow foot" style="width: 750rpx; height: 104rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 1520rpx">
     <view bindtap="changeTab" data-id="1" class="action jk text-gray {{id==1?'xzcg ':''}} ">
       <view class="">
         <view class="cuIcon-home" style="font-weight: 600;"></view>

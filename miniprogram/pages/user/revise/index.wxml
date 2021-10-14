@@ -24,9 +24,9 @@
       </view>
       <view class="cu-form-group">
         <view class="title text-bold">籍 贯</view>
-        <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}" >
+        <picker mode="region" bindchange="RegionChange" value="{{User_Region}}" custom-item="{{customItem}}" >
           <view class="picker">
-            {{region[0]}}，{{region[1]}}，{{region[2]}}
+            {{User_Region[0]}}，{{User_Region[1]}}，{{User_Region[2]}}
           </view>
         </picker>
       </view>

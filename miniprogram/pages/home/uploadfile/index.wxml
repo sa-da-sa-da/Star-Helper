@@ -1,0 +1,36 @@
+<!--pages/home/uploadfile/index.wxml-->
+<view class="main">
+  <cu-custom bgColor="bg-blue " isBack="{{true}}">
+    <view slot="content">交作业</view>
+  </cu-custom>
+</view>
+<form catchsubmit="SubMit_Btn">
+  <view class="cu-form-group margin-top">
+    <view class="title text-bold">您 的 学 号</view>
+    <input placeholder="请输入您的学号，以命名作业文件" value="{{User_StuID}}" bindinput="User_StuID_Input"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title text-bold">您 的 姓 名</view>
+    <input placeholder="请输入您的姓名，以命名作业文件" value="{{User_Name}}" bindinput="User_Name_Input"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title text-bold">授 课 名 称</view>
+    <input placeholder="请输入授课名称，以命名作业文件" value="{{User_Course}}" bindinput="User_Course_Input"></input>
+  </view>
+  <view class="cu-list menu {{menuBorder?'sm-border':''}} margin-top">
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="title text-bold">上传教学设计(10 M 以内)</text>
+      </view>
+      <view class="action" bindtap="upload">
+        <button class="cu-btn round bg-green shadow">
+          <text class="cuIcon-upload" ></text> 上传</button>
+      </view>
+    </view>
+  </view>
+  <text>\n</text>
+  <button class="cu-btn block bg-blue margin-tb-sm lg" formType="submit">
+    <text class="cuIcon-submit iconfont-spin"></text>
+    提交
+  </button>
+</form>

@@ -12,7 +12,7 @@ Component({
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
     User_NickName: "游客",
-    iconList: [{
+    /*iconList: [{
       icon: 'profilefill',
       color: '#3963BC',
       name: '班级管理',
@@ -20,14 +20,14 @@ Component({
     }, {
       icon: 'peoplefill',
       color: '#3963BC',
-      name: '成员管理',
-      url: 'Member_Manage/index'
+      name: '',
+      url: ''
     }, {
       icon: 'taoxiaopu',
       color: '#3963BC',
-      name: '操作记录',
+      name: '班级服务',
       url:'Member_Manage/index'
-    }],
+    }],*/
     itemList: [{
         name: '修改信息',
         icon: 'discoverfill',color:'#3963BC',
@@ -37,6 +37,11 @@ Component({
         name: '创建班级',
         icon: 'friendfamous',color:'#3963BC',
         url: 'create/index',
+      },{
+        icon: 'profilefill',
+        color: '#3963BC',
+        name: '班级管理',
+        url: 'Org_Manage/index'
       }, {
         name: '加入班级',
         icon: 'friendadd',color:'#3963BC',

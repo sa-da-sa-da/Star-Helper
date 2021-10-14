@@ -8,54 +8,91 @@ const db = wx.cloud.database({
 })
 const _ = db.command
 Page({
-  data: {},
+  data: {
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+  },
   onLoad: function (options) {
-    this.PickerList()
+    this.List_Member(options.id)
   },
-  PickerChange(e) {
-    console.log(e);
-    this.setData({
-      index: e.detail.value
-    })
-    this.List_Member(e)
-  },
-  PickerList() {
-    let userid = wx.getStorageSync('userInfo')
-    console.log(userid)
-    db.collection('Class').where({
-      Class_Owner: userid._id
-    }).get().then(res => {
-      //将数据取出，并重新赋值给数组a[]
-      let p = res.data
-      let a = []
-      for (var i in p) {
-        a.push(p[i].Class_Name);
+  List_Member(id) {
+    wx.cloud.callFunction({
+      name: 'getUser',
+      data:{
+        Type: 'getClassUser',
+        id: id
       }
+    }).then(res=>{
       this.setData({
-        picker: a
+        Class_Name: res.result.ClassName,
+        Member_List: res.result.MemberList
       })
     })
   },
-  List_Member(e) {
-    let userid = wx.getStorageSync('userInfo')
-    db.collection('Class').where({
-      Class_Owner: userid._id,
-    }).get().then(res=>{
-      console.log(res.data[e.detail.value].Class_Member)
-      db.collection('User').where({
-        _openid: _.in(res.data[e.detail.value].Class_Member)
-      }).get()
-      .then( res=> {
-        console.log(res)
-        this.setData({
-          Member_List: res.data
-        })
-      })
-      .catch(res=> {
-        wx.showToast({
-          title: '未找到',
-        })
-      })
+  JumpMemberManagePro(e){
+    wx.navigateTo({
+      url: '../../user/Member_Manage/' + e.currentTarget.dataset.url + "?id=" + e.currentTarget.dataset.id,
     })
-  }
+    
+  },
+
+  changeData: function () {
+    this.onLoad(); //最好是只写需要刷新的区域的代码，onload也可，效率低，有点low
+  },
+  // ListTouch触摸开始
+  ListTouchStart(e) {
+    this.setData({
+      ListTouchStart: e.touches[0].pageX
+    })
+  },
+  // ListTouch计算方向
+  ListTouchMove(e) {
+    this.setData({
+      ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
+    })
+  },
+
+  // ListTouch计算滚动
+  ListTouchEnd(e) {
+    if (this.data.ListTouchDirection == 'left') {
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+    } else {
+      this.setData({
+        modalName: null
+      })
+    }
+    this.setData({
+      ListTouchDirection: null
+    })
+  },
+  // ListTouch触摸开始
+  ListTouchStartPro(e) {
+    this.setData({
+      ListTouchStart: e.touches[0].pageX
+    })
+  },
+  // ListTouch计算方向
+  ListTouchMovePro(e) {
+    this.setData({
+      ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
+    })
+  },
+
+  // ListTouch计算滚动
+  ListTouchEndPro(e) {
+    if (this.data.ListTouchDirection == 'left') {
+      this.setData({
+        modalNamePro: e.currentTarget.dataset.target
+      })
+    } else {
+      this.setData({
+        modalNamePro: null
+      })
+    }
+    this.setData({
+      ListTouchDirection: null
+    })
+  },
 })

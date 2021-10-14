@@ -1,0 +1,82 @@
+<!--pages/user/Member_Manage/Member_Manage_Pro/index.wxml-->
+<scroll-view scroll-y class="DrawerPage" scroll-with-animation="true"
+	style="background-color: {{skin?'#030852':'#ffffff'}};">
+	<cu-custom bgColor="bg-blue" isBack="{{true}}">
+		<view slot="content" class="text-shadow-meows">
+			<text class="text-white text-bold">简介</text>
+		</view>
+	</cu-custom>
+	<view class="padding">
+		<view class="padding-xl radius shadow-warp bg-white margin-top">
+			<view class="flex justify-center">
+				<image class="cu-avatar xl round" src="{{UserMem.User_AvatarUrl}}"></image>
+			</view>
+			<view class="flex justify-center margin-top-sm">
+				<text class="text-bold">{{UserMem.User_NickName}}（{{UserMem.User_Name}}）</text>
+			</view>
+			<view class="flex justify-center margin-top-sm">
+				<view wx:if="{{UserMem.User_Gender}}"><text>男</text></view>
+				<view wx:else="{{!UserMem.User_Gender}}"><text>女</text></view>
+				<text class="margin-left-sm">{{UserMem.User_Birth_Date}}</text>
+				<text
+					class="margin-left-sm">籍贯：{{UserMem.User_Region[0]}}{{UserMem.User_Region[1]}}{{UserMem.User_Region[2]}}</text>
+			</view>
+		</view>
+		<view class="padding-xl radius shadow-warp bg-white margin-top format">
+			<view class="cuIcon-group_fill text-xl text-blue text-center"></view>
+			<view class="edu margin-top text-center text-bold"></view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-home"></text>
+				<text class="margin-left-sm">{{UserMem.User_School}}</text>
+			</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-attentionfavor"></text>
+				<text class="margin-left-sm">{{UserMem.User_School}}</text>
+			</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-phone"></text>
+				<text class="margin-left-sm">手机：{{UserMem.User_Phone}}</text>
+			</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-weixin"></text>
+				<text class="margin-left-sm">微信：{{UserMem.User_Wx}}</text>
+			</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-phone"></text>
+				<text class="margin-left-sm">邮箱：{{UserMem.User_Mail}}</text>
+			</view>
+			<view class="margin-top-sm">
+				<view bindtap="saveContact">
+					<text class="cuIcon-addressbook text-xl text-blue"></text>
+					<text class="margin-left-xs">保存通讯录</text>
+				</view>
+			</view>
+		</view>
+		<view class="padding-xl radius shadow-warp bg-white margin-top">
+			<view class="cuIcon-medalfill text-xl text-blue text-center"></view>
+			<view class="medalfill margin-top text-center text-bold"></view>
+			<view class="margin-top evaluate-cont">
+				<text>阿里云云计算助理工程师认证（ACA）</text>
+				<text>阿里云云原生助理工程师认证（ACA）</text>
+				<text>阿里云Apsara Clouder基础技能认证：阿里巴巴编码规范</text>
+			</view>
+		</view>
+		<view class="padding-xl radius shadow-warp bg-white margin-top last-panel">
+			<view class="cuIcon-appreciatefill text-xl text-blue text-center"></view>
+			<view class="evaluate margin-top text-center text-bold"></view>
+			<view class="margin-top evaluate-cont">
+				<text>不务正业的闲聊 QQ 号：3206908770（欢迎来聊）</text>
+				<text>留言板：有啥想说的，欢迎通过各种方式联系我</text>
+			</view>
+		</view>
+	</view>
+
+</scroll-view>
+<wxs module="m1">
+	function format(ts) {
+		var d = getDate(ts)
+		var myDate = getDate();
+		return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+	}
+	module.exports.format = format
+</wxs>

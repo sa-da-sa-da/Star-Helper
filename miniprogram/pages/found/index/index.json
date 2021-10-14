@@ -1,5 +1,9 @@
-{
+{ 
+  "onReachBottomDistance":2000,
+  "enablePullDownRefresh":true,
+  "component": true,
   "usingComponents": {
-    "PageArticleList": "../../../components/PageArticleList/index"
+    "PageArticleList": "../../../components/PageArticleList/index",
+    "floutbut":"../../../components/page_floatbut/index"
   }
 }
