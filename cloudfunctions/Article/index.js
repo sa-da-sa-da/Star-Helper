@@ -9,7 +9,7 @@ const db = cloud.database()
 const _ = db.command
 // 云函数入口函数
 exports.main = async (event) => {
-  switch (event.type) {
+  switch (event.Type) {
     case 'articleDetails': 
       return await articleDetails.main(event, context)
     case 'articleDetailsPro': 
