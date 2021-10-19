@@ -3,7 +3,7 @@
   <view>
     <view class='float_main'>
       <navigator class="note_add" url="/pages/user/note/add/index">
-        <text class="cuIcon-add text-blue"></text>
+        <text class="cuIcon-add text-blue text-xsl "></text>
       </navigator>
     </view>
     <view class='float_main' catchtap='itemclick' wx:if="{{backTop ==true}}">
