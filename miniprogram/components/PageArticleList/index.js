@@ -1,15 +1,9 @@
 // components/PageArticleList/index.js
 Component({
-  /**
-   * 组件的属性列表
-   */
+
   properties: {
 
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
     // 是否还有数据
     nodata: true
