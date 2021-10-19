@@ -50,9 +50,7 @@
 <!-- 底部提示&Action -->
 <view style="padding-bottom: calc(env(safe-area-inset-bottom)/2);" wx:if="{{!loding}}">
   <view class="solid-bottom text-sm text-center">
-    <text>\n\n\n\n\n\n\n</text>
-    <text class="text-grey text-center" bindtap="ContinueLoding">到底啦，更多文章<text class="text-red">点击加载</text> </text>
-    <text>\n\n\n\n\n\n\n</text>
+    <text class="text-grey text-center">到底啦，更多文章请查看其他板块 </text>
   </view>
 </view>
 
