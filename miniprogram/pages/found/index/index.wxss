@@ -5,17 +5,18 @@
 @import "../../../style/icon.wxss";
 
 /* 加载状态*/
-.loding_bg{
-  background:#3963BC;
+.loding_bg {
+  background: #3963BC;
   display: flex;
   justify-content: center;
-  color:#fff
+  color: #fff
 }
 
-.loding_img{
+.loding_img {
   width: 40px;
   height: 40px;
 }
+
 .search {
   width: 75rpx;
   height: 75rpx;
@@ -44,4 +45,8 @@
   padding-top: 13rpx;
   font-size: 25px;
   top: 1399rpx
+}
+
+.item-hover {
+  background: rgb(230, 230, 230) !important;
 }
