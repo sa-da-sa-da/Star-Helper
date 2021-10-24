@@ -11,6 +11,7 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    show: false
   },
   User_StuID_Input(e) {
     this.setData({
@@ -28,63 +29,70 @@ Page({
     })
   },
   upload(e) {
-    wx.chooseMessageFile({
-      count: 1,
-      type: 'file',
-      success(res) {
-        console.log(res)
-        const tempFilePaths = res.tempFiles
-        wx.cloud.uploadFile({
-          cloudPath: 'jj', // 上传至云端的路径
-          filePath: tempFilePaths,
-          name: this.data.User_StuID + ' - ' + this.data.User_Name + ' - ' + this.data.User_Course,
-          success: (result) => {
-
-          },
-          fail: (res) => {},
-          complete: (res) => {},
-        })
-        // tempFilePath可以作为img标签的src属性显示图片
-        
-      }
-
-    })
-
-  },
-
-  SubMit_Btn() {
-    let userid = wx.getStorageSync('userInfo')
     let data = {
       User_Name: this.data.User_Name,
       User_StuID: this.data.User_StuID,
       User_Course: this.data.User_Course,
-
     }
-    if (data) {
-      db.collection('jjup').add({
-          data,
-          success(res) {
-            wx.showToast({
-              title: '提交成功',
-              icon: 'success',
-              duration: 1000
-            })
-          },
-          fail(res) {
-            wx.showToast({
-              title: '提交失败',
-              icon: 'error',
-              duration: 1000
-            })
-          },
-        }),
-        db.collection('jjup').where({
-          _openid: userid._openid
-        }).get().then(res => {
-          this.setData({
-            data
+    console.log(data)
+    if (data.User_Name && data.User_StuID && data.User_Course) {
+      wx.chooseMessageFile({
+        count: 1,
+        type: 'file',
+      }).then(res => {
+        console.log(res)
+        let FileSize = res.tempFiles[0].size / 1024 / 1024
+        this.setData({
+          show: true,
+          FileName: res.tempFiles[0].name,
+          FileSize: FileSize.toFixed(2)
+        })
+        const tempFilePaths = res.tempFiles[0].path
+        const fileName = res.tempFiles[0].name
+        const FileExtensionNmae = fileName.substring(fileName.lastIndexOf('.') + 1);
+        wx.cloud.uploadFile({
+          cloudPath: "jj/" + data.User_StuID + " - " + data.User_Name + " - " + data.User_Course + "." + FileExtensionNmae, // 上传至云端的路径
+          filePath: tempFilePaths,
+        }).then(res => {
+          let data = {
+            User_Name: this.data.User_Name,
+            User_StuID: this.data.User_StuID,
+            User_Course: this.data.User_Course,
+            fileID: res.fileID
+          }
+          db.collection('jjup').add({
+            data,
+          }).then({
+            success: function (res) {
+              console.log(res.data)
+              wx.showToast({
+                title: '上传成功',
+                icon:'success',
+                duration:1500,
+              })
+            },
+            fail: function(res){
+              wx.showToast({
+                title: '请重试',
+                icon:'error',
+                duration:1500,
+              })
+            }
           })
         })
+        // tempFilePath可以作为img标签的src属性显示图片
+      })
+    } else {
+      wx.showToast({
+        title: '填写必要信息',
+        icon: 'error',
+        duration: 3000
+      })
     }
-  }
+  },
+  Delete() {
+    this.setData({
+      show: false
+    })
+  },
 })
