@@ -2,10 +2,15 @@
 @import "../../style/color_ui.wxss";
 @import "../../style/Star_ui.wxss";
 @import "../../style/icon.wxss";
-.HomeSwiperBackground{
+
+.HomeSwiperBackground {
     height: 135px;
     padding-top: 14px;
-    background: linear-gradient(to top,#f7f7f7, #3963BC);
+    background: linear-gradient(to top, #f7f7f7, #3963BC);
     width: 100%;
     position: absolute;
+}
+
+.item-hover {
+    background: rgb(230, 230, 230) !important;
 }
