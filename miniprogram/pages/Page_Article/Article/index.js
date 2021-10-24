@@ -50,7 +50,42 @@ Page({
       this.sq()
     },
   },
-
+  showModal: async function (e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+    try {
+      let that = this;
+      if (that.data.nomore === true)
+        return;
+      let page = that.data.commentPage;
+      let commentList = await api.getPostComments(page, that.data.Article._id)
+      if (commentList.data.length === 0) {
+        that.setData({
+          nomore: true
+        })
+        if (page === 1) {
+          that.setData({
+            nodata: true
+          })
+        }
+      } else {
+        that.setData({
+          commentPage: page + 1,
+          commentList: that.data.commentList.concat(commentList.data),
+        })
+      }
+    } catch (err) {
+      console.info(err)
+    } finally {
+      wx.hideLoading()
+    }
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
   onPageScroll: function (e) {
     var that = this
     var scrollTop = e.scrollTop
