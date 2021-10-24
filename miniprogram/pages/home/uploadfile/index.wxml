@@ -1,8 +1,9 @@
 <!--pages/home/uploadfile/index.wxml-->
-<view class="main">
-  <cu-custom bgColor="bg-blue " isBack="{{true}}">
-    <view slot="content">交作业</view>
-  </cu-custom>
+<cu-custom bgColor="bg-blue " isBack="{{true}}">
+  <view slot="content">交作业、文件</view>
+</cu-custom>
+<view class="cu-load bg-blue">
+  <view class="title text-bold">注意：上传文件前，应该首先输入以下信息，以免发生丢失、缺损等等故障无法追踪的问题</view>
 </view>
 <form catchsubmit="SubMit_Btn">
   <view class="cu-form-group margin-top">
@@ -20,17 +21,24 @@
   <view class="cu-list menu {{menuBorder?'sm-border':''}} margin-top">
     <view class="cu-item {{menuArrow?'arrow':''}}">
       <view class="content">
-        <text class="title text-bold">上传教学设计(10 M 以内)</text>
+        <text class="title text-bold">上传教学设计(50 M 以内)</text>
       </view>
-      <view class="action" bindtap="upload">
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}" wx:if="{{show}}">
+      <view class="content">
+        <text class="title text-bold">{{FileName}} - {{FileSize}}MB</text>
+      </view>
+      <view class="action" bindtap="Delete">
+        <button class="cu-btn round bg-red shadow">
+          <text class="cuIcon-delete"></text>删除</button>
+      </view>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}} " wx:else="{{!show}}">
+      <view class="action " bindtap="upload">
         <button class="cu-btn round bg-green shadow">
-          <text class="cuIcon-upload" ></text> 上传</button>
+          <text class="cuIcon-upload"></text> 上传</button>
       </view>
     </view>
   </view>
   <text>\n</text>
-  <button class="cu-btn block bg-blue margin-tb-sm lg" formType="submit">
-    <text class="cuIcon-submit iconfont-spin"></text>
-    提交
-  </button>
 </form>
