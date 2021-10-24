@@ -11,7 +11,7 @@ Page({
     this.UserInforMation(options.id)
   },
   UserInforMation(id){
-    console.log(id)
+    let that = this
     wx.cloud.callFunction({
       name: 'getUser',
       config:{
@@ -28,6 +28,24 @@ Page({
     })
   },
   saveContact(){
-
+    let that = this.data.UserMem
+    console.log(that)
+    wx.addPhoneContact({
+      nickName: that.User_NickName,
+      firstName: that.User_Name,
+      mobilePhoneNumber: that.User_Phone,
+      weChatNumber: that.User_Wx,
+      email: that.User_Mail,
+      success() {},
+      fail(e) {
+        console.log(e)
+        console.log('保存失败');
+        wx.showToast({
+          title: '保存失败',
+          icon: 'error',
+          duration: 1500,
+        })
+      }
+    })
   }
 })
