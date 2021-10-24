@@ -19,7 +19,10 @@
     "pages/home/discuss/index",
     "pages/home/downloadfile/publish/index",
     "pages/home/discuss/discusspublish/index",
-    "pages/home/discuss/discussdetails/index"
+    "pages/home/discuss/discussdetails/index",
+    "pages/home/notice/index",
+    "pages/user/authorization/index",
+    "pages/Page_Article/SytemNotice/index"
   ],
   "window": {
     "backgroundColor": "#f7f7f7",
@@ -33,27 +36,26 @@
     "color": "#a9b7b7",
     "selectedColor": "#3963BC",
     "borderStyle": "white",
-    "list": [{
+    "list": [
+      {
         "selectedIconPath": "/images/shome.png",
         "iconPath": "/images/home.png",
         "pagePath": "pages/home/home",
         "text": "首页"
-      },{
-        "selectedIconPath": "/images/sfound.png",
+      },
+      {
+        "selectedIconPath": "images/sfound.png",
         "iconPath": "/images/found.png",
         "pagePath": "pages/found/index/index",
         "text": "发现"
-      },{
+      },
+      {
         "selectedIconPath": "/images/suser.png",
         "iconPath": "/images/user.png",
         "pagePath": "pages/user/index/index",
         "text": "我的"
-      },{
-        "selectedIconPath": "/images/suser.png",
-        "iconPath": "/images/user.png",
-        "pagePath": "pages/user/index/index",
-        "text": "我的"
-      }]
+      }
+    ]
   },
   "usingComponents": {
     "cu-custom": "./components/cu-custom/cu-custom"
