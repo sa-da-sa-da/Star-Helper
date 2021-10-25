@@ -1,61 +1,29 @@
 <!--pages/home/downloadfile/index.wxml-->
 <view class="main">
   <cu-custom bgColor="bg-blue " isBack="{{true}}">
-    <view slot="content">收作业、文件</view>
+    <view slot="content">收作业、文件列表</view>
   </cu-custom>
 </view>
-<view class="margin-lr-sm">
-  <form catchsubmit="SubMit_Btn" class="">
-    <view class="cu-form-group margin-top">
-      <view class="title text-bold">收 集 标 题*</view>
-      <input placeholder="请输入您的学号，以命名作业文件" value="{{FileTitle}}" bindinput="FileTitle_Input"></input>
+<view class="cu-card article {{isCard?'no-card':''}}">
+  <view class="cu-item shadow">
+    <view class="title">
+      <view class="text-cut">收集标题</view>
     </view>
-    <view class="cu-form-group align-start">
-      <view class="title text-bold">详 细 描 述</view>
-      <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput"
-        placeholder="请输入作业内容的详细描述"></textarea>
-    </view>
-    <view class="cu-bar bg-white solid-bottom margin-top ">
-      <view class="margin-lr-sm">
-        <text class="text-cut">文件自动命名\n</text>
-        <view class="cu-tag sm">文件按照对方填写的信息命名</view>
-      </view>
-      <view class="text-gray text-sm flex">
-        <button class="cu-btn icon" bindtap="onAddPhone">
-          <text class="cuIcon-add"></text>
-        </button>
-        <button class="cu-btn icon" bindtap="delList">
-          <text class="cuIcon-close"></text>
-        </button>
+    <view class="content">
+      <view class="desc">
+        <view class="text-content"> 收集详情</view>
+        <view>
+          <view class="cu-tag bg-red light sm round">班级</view>
+          <view class="cu-tag bg-green light sm round">0/0</view>
+        </view>
       </view>
     </view>
-    <view class="cu-form-group" wx:for="{{lists}}" wx:key="{{index}}">
-      <input placeholder="添加信息，如学号、班级" value="{{User_Name}}" bindinput="Lists_Input"></input>
-    </view>
-    <view class="cu-form-group margin-top">
-      <view class="title">截至时间*</view>
-      <picker mode="date" value="{{date}}" bindchange="DateChange">
-        <view class="picker">
-          {{date}}
-        </view>
-      </picker>
-      <picker mode="time" value="{{time}}" bindchange="TimeChange">
-        <view class="picker">
-          {{time}}
-        </view>
-      </picker>
-    </view>
-    <view class="cu-form-group margin-top">
-      <view class="title">选择班级*</view>
-      <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-        <view class="picker">
-          {{index?picker[index]:'点击选择班级'}}
-        </view>
-      </picker>
-    </view>
-    <button class="cu-btn block bg-blue margin-tb-sm lg" formType="submit">
-      <text class="cuIcon-submit iconfont-spin"></text>
-      发布
-    </button>
-  </form>
+  </view>
 </view>
+<navigator class="note_add" url="/pages/home/downloadfile/publish/index">
+  <view class='float_box'>
+    <view class='float_main'>
+      <text class="cuIcon-add text-white text-xsl"></text>
+    </view>
+  </view>
+</navigator>
