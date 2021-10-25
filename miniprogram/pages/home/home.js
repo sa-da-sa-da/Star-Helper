@@ -1,7 +1,5 @@
 import api from '../../utils/api.js';
-import {
-  config
-} from '../../utils/config.js'
+import {config} from '../../utils/config.js'
 const db = wx.cloud.database({
   env: config.EnvID
 })
@@ -9,7 +7,7 @@ const _ = db.command
 const app = getApp()
 Page({
   data: {
-    TabCur: "Message_Type_System",
+    TabCur: "Message_Type_Class",
     cardCur: 0,
     page: 0,
     eachData: 3,
@@ -17,9 +15,9 @@ Page({
     iconList: [{
       icon: 'discover',
       color: '#3963BC',
-      name: '交作业',
+      name: '教技专用',
       url: 'home/uploadfile/index'
-    }, {
+    }, /*{
       icon: 'discover',
       color: '#3963BC',
       name: '收作业',
@@ -29,7 +27,7 @@ Page({
       color: '#3963BC',
       name: '讨论',
       url: 'home/discuss/index'
-    }, {
+    },*/ {
       icon: 'discover',
       color: '#3963BC',
       name: '发通知',
@@ -42,6 +40,11 @@ Page({
     this.SwiperList()
     this.IndexMessage()
     this.IndexMessageType()
+    api.GEt_Styem.then(res => {
+      this.setData({
+        Sytem: res
+      })
+    })
   },
 
   SwiperList() {
@@ -129,11 +132,6 @@ Page({
       cardCur: e.detail.current
     })
   },
-  /*tz_swiper(e) {
-    wx.navigateTo({
-      url: "../../pages/details/article_details/article_details?id=" + e.currentTarget.dataset.url
-    })
-  },*/
   tz(e) {
     wx.navigateTo({
       url: "/pages/" + e.currentTarget.dataset.url + "?id=" + e.currentTarget.dataset.id
