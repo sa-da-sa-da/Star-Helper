@@ -55,6 +55,16 @@ Page({
       lists: lists,
     })
   },
+  FileTitle_Input(e){
+    this.setData({
+      FileTitle: e.detail.value
+    })
+  },
+  FileMescInput(e){
+    this.setData({
+      FileMesc: e.detail.value
+    })
+  },
   TimeChange(e) {
     this.setData({
       time: e.detail.value
@@ -76,9 +86,7 @@ Page({
     this.setData({
       index: e.detail.value
     })
-    this.List_Member(e)
   },
-
   PickerList() {
     let userid = wx.getStorageSync('userInfo')
     console.log(userid)
@@ -96,74 +104,7 @@ Page({
       })
     })
   },
-  List_Member(e) {
-    let userid = wx.getStorageSync('userInfo')
-    db.collection('Class').where({
-      Class_Owner: userid._id,
-    }).get().then(res => {
-      console.log(res.data[e.detail.value].Class_Member)
-      db.collection('User').where({
-          _openid: _.in(res.data[e.detail.value].Class_Member)
-        }).get()
-        .then(res => {
-          console.log(res)
-          this.setData({
-            Member_List: res.data
-          })
-        })
-        .catch(res => {
-          wx.showToast({
-            title: '未找到',
-          })
-        })
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  SubMit(){
+    
   }
 })
