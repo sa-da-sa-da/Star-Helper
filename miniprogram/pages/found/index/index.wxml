@@ -12,14 +12,14 @@
   <view class="mt10"> 数据加载中</view>
 </view>
 <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
-  <view class="cu-item {{item.value==TabCur?'text-green cur':''}}" wx:for="{{Article_Type}}" wx:key="this" bindtap="tabSelect"
-    data-id="{{item.value}}">
+  <view class="cu-item {{item.value==TabCur?'text-green cur':''}}" wx:for="{{Article_Type}}" wx:key="this"
+    bindtap="tabSelect" data-id="{{item.value}}">
     {{item.label}}
   </view>
 </scroll-view>
 <view wx:for="{{A_list}}" wx:key="this" wx:index="index" data-id="{{item._id}}" bindtap="tz"
   data-url="Page_Article/Article/index" hover-class="item-hover" wx:if="{{item.Article_Type==TabCur}}">
-  <view class="cu-card article" wx:if="{{!loding}}"  >
+  <view class="cu-card article" wx:if="{{!loding}}">
     <view class="cu-item shadow" hover-stay-time="100">
       <view class="title">
         <view class="text-cut">{{item.Article_TiTle}}</view>
@@ -55,12 +55,12 @@
 </view>
 
 <!--悬浮搜索-->
-<view class="search bg-blue light" bindtap="JumpSearchPages" data-url="search/index" >
+<view class="search bg-blue light" bindtap="JumpSearchPages" data-url="search/index">
   <view class="cuIcon-search" />
 </view>
 
 <!--快捷置顶-->
-<view class="top bg-blue light" bindtap="goScrolltop"  >
+<view class="top bg-blue light" bindtap="goScrolltop">
   <view class="cuIcon-top" />
 </view>
 
