@@ -1,1 +1,21 @@
 /* pages/home/downloadfile/index.wxss */
+.float_box {
+  position: fixed;
+  bottom: 100rpx;
+  right: 30rpx;
+  text-align: center;
+}
+
+.float_main {
+  top: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18rpx;
+  background: #3963BC;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 8rpx rgba(219, 216, 216, 0.1);
+}
